@@ -1,5 +1,8 @@
-import { takeEvery } from "redux-saga"
-import { put, call } from "redux-saga/effects"
+import {  delay } from "redux-saga"
+import { takeEvery, put, call } from "redux-saga/effects"
+import DarkSky from "dark-sky"
+const forecast = new DarkSky("acd83c929d2788063970e328f6b26794")
+
 import {
     FETCH_WEATHER_DATA,
     FETCH_WEATHER_DATA_SUCCESS,
@@ -18,14 +21,14 @@ export function* watchFetchWeatherData() {
 }
 
 export function* fetchWeatherData(action) {
-    const url = 'https://jsonplaceholder.typicode.com/posts/1'
+    const url = 'c373bad511a5643591596847902ff1b2/37.8267,-122.4233'
     try {
         const response = yield call(fetch, url)
-        const data = yield response.json()
         console.log(response)
-
+        const data = yield response.json()
         yield put({type: FETCH_WEATHER_DATA_SUCCESS, data})
     } catch(e) {
         console.log(e)
+        yield put({type: FETCH_WEATHER_DATA_ERROR})        
     }
 }

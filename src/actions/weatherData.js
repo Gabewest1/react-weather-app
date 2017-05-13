@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
     FETCH_WEATHER_DATA,
     FETCH_WEATHER_DATA_SUCCESS,

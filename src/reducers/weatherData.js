@@ -16,9 +16,9 @@ export default function weatherData(state = initialState, action) {
         case FETCH_WEATHER_DATA:
             return state.set("isFetching", true)
         case FETCH_WEATHER_DATA_SUCCESS: 
-            return state.set("data", action.data)
+            return state.set("data", action.data).set("isFetching", false)
         case FETCH_WEATHER_DATA_ERROR: 
-            return state.set("error", true)
+            return state.set("error", true).set("isFetching", false)
         default:
             return state
     }
