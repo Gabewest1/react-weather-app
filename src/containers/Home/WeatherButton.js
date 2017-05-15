@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
+//Styling for the size of the font for the button is located in the `span` element
 const Button = styled.button`
     outline: none;
     padding: 0;
