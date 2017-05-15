@@ -28,15 +28,21 @@ class Home extends React.Component{
             </p>
         )
     }
+
     render() {
         let { handleSubmit } = this.props
+        let isFetchingWeatherData = this.props.weatherData.get("isFetching")
+        let showWeatherData = this.props.weatherData.get("showData")
 
         return (
             <Container>
-                <Form onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
+                <Form {...this.props} onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
                     <Input name="location" component="input" type="text" placeholder="zip, city, coordinates..."  />
-                    
-                    {this.props.weatherData.get("isFetching") ? (<p>"Loading Data..."</p>) : this.renderWeatherData()}
+                    {   
+                        isFetchingWeatherData ? "Loading Data..." :
+                        !showWeatherData ? null :
+                        this.renderWeatherData()
+                    }
                     <WeatherButton>Get Weather</WeatherButton>
                 </Form>
             </Container>
