@@ -7,6 +7,7 @@ import {
     FETCH_WEATHER_DATA,
     FETCH_WEATHER_DATA_SUCCESS,
     FETCH_WEATHER_DATA_ERROR,
+    SHOW_WEATHER_DATA,
 } from "../constants"
 
 export default function* rootSaga() {
@@ -35,7 +36,9 @@ export function* fetchWeatherData(action) {
         const response = yield call(fetch, weatherApiUrl)
         console.log(response)
         const data = yield response.json()
+        yield delay(1000)
         yield put({type: FETCH_WEATHER_DATA_SUCCESS, data})
+        yield put({type: SHOW_WEATHER_DATA, payload: true})
     } catch(e) {
         console.log(e)
         yield put({type: FETCH_WEATHER_DATA_ERROR})        
