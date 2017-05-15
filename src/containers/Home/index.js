@@ -12,7 +12,7 @@ import Input from "./Input"
 
 //import actions and selectors
 import * as actions from "../../actions/weatherData"
-import { selectTemperature, selectTimezone } from "../../selectors/weatherData"
+import * as weatherDataSelectors from "../../selectors/weatherData"
 class Home extends React.Component{
     handleSubmit(values) {
         console.log(values)
@@ -20,12 +20,25 @@ class Home extends React.Component{
         this.props.fetchWeatherData(location)
     }
     renderWeatherData() {
-        let { temperature, timezone } = this.props
+        let { 
+            temperature,
+            timezone,
+            humidity,
+            windSpeed,
+            rain,
+            summary,
+            icon 
+        } = this.props
         return (
-            <p>
-                Timezone: {timezone} <br />
-                Temperature: {temperature}
-            </p>
+            <ul>
+                <li>Summary: {summary} </li>
+                <li>Timezone: {timezone} </li>
+                <li>Temperature: {temperature} </li>
+                <li>Humidity: {humidity} </li>
+                <li>Wind Speed: {windSpeed} </li>
+                <li>Chance of Rain: {rain} </li>
+                <li>Icon to display: {icon} </li>
+            </ul>
         )
     }
 
@@ -52,12 +65,22 @@ class Home extends React.Component{
 
 function mapStateToProps(state) {
     let data = state.weatherData.get("data")
-    let temperature = data ? selectTemperature(data) : false
-    let timezone = data ? selectTimezone(data) : false
+    let temperature = data ? weatherDataSelectors.selectTemperature(data) : false
+    let timezone = data ? weatherDataSelectors.selectTimezone(data) : false
+    let humidity = data ? weatherDataSelectors.selectHumidity(data) : false
+    let windSpeed = data ? weatherDataSelectors.selectWindSpeed(data) : false
+    let rain = data ? weatherDataSelectors.selectRainProbability(data) : false
+    let summary = data ? weatherDataSelectors.selectSummary(data) : false
+    let icon = data ? weatherDataSelectors.selectIcon(data) : false
     return {
         weatherData: state.weatherData,
         temperature,
-        timezone
+        timezone,
+        humidity,
+        windSpeed,
+        rain,
+        summary,
+        icon
     }
 }
 
