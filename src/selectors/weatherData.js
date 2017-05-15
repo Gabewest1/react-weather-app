@@ -2,3 +2,9 @@ import { createSelector } from "reselect"
 
 export const selectTemperature = (state) => state.currently.temperature
 export const selectTimezone = (state) => state.timezone
+export const selectHumidity = (state) => state.currently.humidity
+export const selectWindSpeed = (state) => state.currently.windSpeed
+export const selectRainProbability = (state) => state.currently.precipProbaility
+export const selectSummary = (state) => state.currently.summary
+export const selectIcon = (state) => state.currently.icon
+
