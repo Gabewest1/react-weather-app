@@ -21,12 +21,18 @@ export function* watchFetchWeatherData() {
 }
 
 export function* fetchWeatherData(action) {
-    const {lat, long} = action.location
-    const weatherApiUrl = `c373bad511a5643591596847902ff1b2/${lat+","+long}`
-    const googleGeocoderApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${action.location}&key=AIzaSyBlEuzRfwGV7IIIpUtefZWzHTg5Ip6UO3E`
-    console.log("location and URL: ", location, url)
+    const { location } = action
+    const apiKey = "AIzaSyBlEuzRfwGV7IIIpUtefZWzHTg5Ip6UO3E"
+    const googleGeocoderApiUrl = 
+            `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${apiKey}`
+
     try {
-        const response = yield call(fetch, url)
+        const locationInfoResponse = yield call(fetch, googleGeocoderApiUrl)
+        const locationInfo = yield locationInfoResponse.json()
+        console.log(locationInfo)
+        const { lat, lng } = locationInfo.results[0].geometry.location
+        const weatherApiUrl = `c373bad511a5643591596847902ff1b2/${lat+","+lng}`
+        const response = yield call(fetch, weatherApiUrl)
         console.log(response)
         const data = yield response.json()
         yield put({type: FETCH_WEATHER_DATA_SUCCESS, data})
