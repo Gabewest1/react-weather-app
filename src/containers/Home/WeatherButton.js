@@ -104,6 +104,10 @@ const Span = styled.span`
         text-shadow: 0px -1px #97A63A;
         cursor: pointer;
     }
+
+    @media (max-width: 480px) {
+        font-size: 20px;
+    }
 `
 
 export default (props) => {
