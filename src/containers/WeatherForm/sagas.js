@@ -28,6 +28,7 @@ export function* fetchWeatherData(action) {
         const response = yield call(fetch, weatherApiUrl)
         const data = yield response.json()
 
+        yield delay(2000)
         yield put({type: FETCH_WEATHER_DATA_SUCCESS, data})
         yield put({type: COLLAPSE_FORM, payload: false})
         yield delay(1000)
