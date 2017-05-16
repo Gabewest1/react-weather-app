@@ -64,8 +64,14 @@ function getHeight(props) {
     const NORMAL_HEIGHT = "120px"
     const IS_FETCHING_HEIGHT = "160px"
     const EXPANDED_HEIGHT = "90%"
-    let { isFetching, data, showData } = props.weatherData.toJS()
+    let { isFetching, data, showData, collapsed } = props.weatherData.toJS()
 
+    if(collapsed) {
+        return NORMAL_HEIGHT
+    } else {
+        return EXPANDED_HEIGHT
+    }
+    
     if(isFetching) {
         return IS_FETCHING_HEIGHT
     } else if(data) {

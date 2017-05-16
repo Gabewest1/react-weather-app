@@ -97,5 +97,5 @@ function mapDispatchToProps(dispatch) {
 }
 export default reduxForm({
     form: "weatherData",
-    fields: ["location"]
+    fields: ["location"],
 })(connect(mapStateToProps, mapDispatchToProps)(Home))
