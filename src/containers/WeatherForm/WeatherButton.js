@@ -6,6 +6,8 @@ const Button = styled.button`
     box-sizing: border-box;
     outline: none;
     padding: 0;
+    width: 100%;
+    white-space: nowrap;    
     border-radius: 10px;
     box-shadow: 
         0px 3px rgba(128, 128, 128, 1),
