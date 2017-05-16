@@ -1,14 +1,11 @@
 import React from "react"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import zips from "zips"
 
 //import components
-import { Field, reduxForm } from "redux-form/immutable"
+import { reduxForm } from "redux-form/immutable"
 import Container from "./Container"
-import WeatherButton from "./WeatherButton"
-import Form from "./Form"
-import Input from "./Input"
+import WeatherForm from "../WeatherForm"
 
 //import actions and selectors
 import * as actions from "../../actions/weatherData"
@@ -51,51 +48,19 @@ class Home extends React.Component {
     }
 
     render() {
-        let { handleSubmit } = this.props
-        let isFetchingWeatherData = this.props.weatherData.get("isFetching")
-        let showWeatherData = this.props.weatherData.get("showData")
-
         return (
             <Container>
-                <Form {...this.props} onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
-                    <Input name="location" component="input" type="text" placeholder="zip, city, coordinates..."  />
-                    {   
-                        isFetchingWeatherData ? "Loading Data..." :
-                        !showWeatherData ? null :
-                        this.renderWeatherData()
-                    }
-                    <WeatherButton>{showWeatherData ? "New Location" : "Get Weather"}</WeatherButton>
-                </Form>
+                <WeatherForm />
             </Container>
-        );
+        )
     }
 }
 
 function mapStateToProps(state) {
-    let data = state.weatherData.get("data")
-    let temperature = data ? weatherDataSelectors.selectTemperature(data) : false
-    let timezone = data ? weatherDataSelectors.selectTimezone(data) : false
-    let humidity = data ? weatherDataSelectors.selectHumidity(data) : false
-    let windSpeed = data ? weatherDataSelectors.selectWindSpeed(data) : false
-    let rain = data ? weatherDataSelectors.selectRainProbability(data) : false
-    let summary = data ? weatherDataSelectors.selectSummary(data) : false
-    let icon = data ? weatherDataSelectors.selectIcon(data) : false
-    return {
-        weatherData: state.weatherData,
-        temperature,
-        timezone,
-        humidity,
-        windSpeed,
-        rain,
-        summary,
-        icon
-    }
+    return {}
 }
-console.log(new Home())
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(actions, dispatch)
 }
-export default reduxForm({
-    form: "weatherData",
-    fields: ["location"],
-})(connect(mapStateToProps, mapDispatchToProps)(Home))
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
