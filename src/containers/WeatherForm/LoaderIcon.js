@@ -1,0 +1,17 @@
+import React from "react"
+import styled from "styled-components"
+
+const LoaderIcon = styled.i`
+    display: inline-box;
+    position: absolute;
+    right: 10px;
+`
+export default (props) => {
+    let classNames = "spinner icon"
+    if(props.isFetching) {
+        classNames += " loading"
+    }
+    return (
+        <LoaderIcon className={classNames} />
+    )
+}
