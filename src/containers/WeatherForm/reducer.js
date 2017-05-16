@@ -4,9 +4,11 @@ import {
     FETCH_WEATHER_DATA_SUCCESS,
     FETCH_WEATHER_DATA_ERROR,
     SHOW_WEATHER_DATA,
-} from "../constants"
+    COLLAPSE_FORM,
+} from "./constants"
 
 let initialState = fromJS({
+    collapsed: true,
     isFetching: false,
     data: false,
     showData: false,
@@ -23,6 +25,8 @@ export default function weatherData(state = initialState, action) {
             return state.set("error", true).set("isFetching", false)
         case SHOW_WEATHER_DATA: 
             return state.set("showData", action.payload)
+        case COLLAPSE_FORM: 
+            return state.set("collapsed", action.payload)
         default:
             return state
     }

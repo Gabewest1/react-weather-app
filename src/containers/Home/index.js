@@ -3,13 +3,12 @@ import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 
 //import components
-import { reduxForm } from "redux-form/immutable"
 import Container from "./Container"
 import WeatherForm from "../WeatherForm"
 
 //import actions and selectors
-import * as actions from "../../actions/weatherData"
-import * as weatherDataSelectors from "../../selectors/weatherData"
+import * as actions from "../WeatherForm/actions"
+
 class Home extends React.Component {
     handleSubmit(values) {
         let { location } = values

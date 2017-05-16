@@ -8,10 +8,12 @@ import { Field, reduxForm } from "redux-form/immutable"
 import WeatherButton from "./WeatherButton"
 import Form from "./Form"
 import Input from "./Input"
+import LoaderIcon from "./LoaderIcon"
+import Wrapper from "./Wrapper"
 
 //import actions and selectors
-import * as actions from "../../actions/weatherData"
-import * as weatherDataSelectors from "../../selectors/weatherData"
+import * as actions from "./actions"
+import * as weatherDataSelectors from "./selectors"
 class WeatherForm extends React.Component {
     handleSubmit(values) {
         let { location } = values
@@ -22,6 +24,7 @@ class WeatherForm extends React.Component {
         //data
         if(showData) {
             this.props.showWeatherData(false)
+            this.props.collapseForm(true)
         } else {
             this.props.fetchWeatherData(location)
         }
@@ -56,7 +59,10 @@ class WeatherForm extends React.Component {
 
         return (
             <Form {...this.props} onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
-                <Input name="location" component="input" type="text" placeholder="zip, city, coordinates..."  />
+                <Wrapper>
+                    <Input name="location" component="input" type="text" placeholder="zip, city, coordinates..."  />
+                    <LoaderIcon isFetching={isFetchingWeatherData} />
+                </Wrapper>
                 {   
                     isFetchingWeatherData ? "Loading Data..." :
                     !showWeatherData ? null :

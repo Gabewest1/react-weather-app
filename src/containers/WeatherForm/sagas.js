@@ -1,20 +1,12 @@
 import {  delay } from "redux-saga"
 import { takeEvery, put, call } from "redux-saga/effects"
-import DarkSky from "dark-sky"
-const forecast = new DarkSky("acd83c929d2788063970e328f6b26794")
-
 import {
     FETCH_WEATHER_DATA,
     FETCH_WEATHER_DATA_SUCCESS,
     FETCH_WEATHER_DATA_ERROR,
     SHOW_WEATHER_DATA,
-} from "../constants"
-
-export default function* rootSaga() {
-    yield [
-        watchFetchWeatherData()
-    ]
-}
+    COLLAPSE_FORM,
+} from "./constants"
 
 export function* watchFetchWeatherData() {
     console.log("In watcher function")
@@ -37,6 +29,7 @@ export function* fetchWeatherData(action) {
         const data = yield response.json()
 
         yield put({type: FETCH_WEATHER_DATA_SUCCESS, data})
+        yield put({type: COLLAPSE_FORM, payload: false})
         yield delay(1000)
         yield put({type: SHOW_WEATHER_DATA, payload: true})
     } catch(e) {
