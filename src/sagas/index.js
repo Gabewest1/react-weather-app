@@ -30,14 +30,14 @@ export function* fetchWeatherData(action) {
     try {
         const locationInfoResponse = yield call(fetch, googleGeocoderApiUrl)
         const locationInfo = yield locationInfoResponse.json()
-        console.log(locationInfo)
         const { lat, lng } = locationInfo.results[0].geometry.location
+
         const weatherApiUrl = `c373bad511a5643591596847902ff1b2/${lat+","+lng}`
         const response = yield call(fetch, weatherApiUrl)
-        console.log(response)
         const data = yield response.json()
-        yield delay(1000)
+
         yield put({type: FETCH_WEATHER_DATA_SUCCESS, data})
+        yield delay(1000)
         yield put({type: SHOW_WEATHER_DATA, payload: true})
     } catch(e) {
         console.log(e)

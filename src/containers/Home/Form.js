@@ -68,7 +68,7 @@ function getHeight(props) {
 
     if(isFetching) {
         return IS_FETCHING_HEIGHT
-    } else if(data && showData) {
+    } else if(data) {
         return EXPANDED_HEIGHT
     } else {
         return NORMAL_HEIGHT

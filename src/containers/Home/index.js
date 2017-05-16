@@ -13,11 +13,19 @@ import Input from "./Input"
 //import actions and selectors
 import * as actions from "../../actions/weatherData"
 import * as weatherDataSelectors from "../../selectors/weatherData"
-class Home extends React.Component{
+class Home extends React.Component {
     handleSubmit(values) {
-        console.log(values)
         let { location } = values
-        this.props.fetchWeatherData(location)
+        let showData = this.props.weatherData.get("showData")
+
+        //if the weather has already been previously queried and is currently being displayed,
+        //then hide the data so the user can make another query. Otherwise, query for the new weather 
+        //data
+        if(showData) {
+            this.props.showWeatherData(false)
+        } else {
+            this.props.fetchWeatherData(location)
+        }
     }
     renderWeatherData() {
         let { 
@@ -56,7 +64,7 @@ class Home extends React.Component{
                         !showWeatherData ? null :
                         this.renderWeatherData()
                     }
-                    <WeatherButton>Get Weather</WeatherButton>
+                    <WeatherButton>{showWeatherData ? "New Location" : "Get Weather"}</WeatherButton>
                 </Form>
             </Container>
         );
@@ -83,7 +91,7 @@ function mapStateToProps(state) {
         icon
     }
 }
-
+console.log(new Home())
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(actions, dispatch)
 }

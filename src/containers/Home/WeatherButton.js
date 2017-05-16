@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 //Styling for the size of the font for the button is located in the `span` element
 const Button = styled.button`
+    box-sizing: border-box;
     outline: none;
     padding: 0;
     border-radius: 10px;
