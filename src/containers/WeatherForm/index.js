@@ -63,11 +63,7 @@ class WeatherForm extends React.Component {
                     <Input name="location" component="input" type="text" placeholder="zip, city, coordinates..."  />
                     <LoaderIcon isFetching={isFetchingWeatherData} />
                 </Wrapper>
-                {   
-                    isFetchingWeatherData ? "Loading Data..." :
-                    !showWeatherData ? null :
-                    this.renderWeatherData()
-                }
+                { showWeatherData ? this.renderWeatherData() : null }
                 <WeatherButton>{showWeatherData ? "New Location" : "Get Weather"}</WeatherButton>
             </Form>
         )
