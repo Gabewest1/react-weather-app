@@ -11,6 +11,7 @@ import Input from "./Input"
 import LoaderIcon from "./LoaderIcon"
 import Wrapper from "./Wrapper"
 import WeatherDataList from "./WeatherDataList"
+import Top from "./Top"
 
 //import actions and selectors
 import * as actions from "./actions"
@@ -42,9 +43,8 @@ class WeatherForm extends React.Component {
         } = this.props
         return (
             <WeatherDataList>
-                <li>Summary: {summary} </li>
+                <Top temperature={temperature} summary={summary} icon={icon}/>
                 <li>Timezone: {timezone} </li>
-                <li>Temperature: {temperature} </li>
                 <li>Humidity: {humidity} </li>
                 <li>Wind Speed: {windSpeed} </li>
                 <li>Chance of Rain: {rain} </li>
