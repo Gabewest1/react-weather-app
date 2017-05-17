@@ -10,6 +10,7 @@ import Form from "./Form"
 import Input from "./Input"
 import LoaderIcon from "./LoaderIcon"
 import Wrapper from "./Wrapper"
+import WeatherDataList from "./WeatherDataList"
 
 //import actions and selectors
 import * as actions from "./actions"
@@ -40,7 +41,7 @@ class WeatherForm extends React.Component {
             icon 
         } = this.props
         return (
-            <ul>
+            <WeatherDataList>
                 <li>Summary: {summary} </li>
                 <li>Timezone: {timezone} </li>
                 <li>Temperature: {temperature} </li>
@@ -48,7 +49,7 @@ class WeatherForm extends React.Component {
                 <li>Wind Speed: {windSpeed} </li>
                 <li>Chance of Rain: {rain} </li>
                 <li>Icon to display: {icon} </li>
-            </ul>
+            </WeatherDataList>
         )
     }
 
@@ -61,7 +62,7 @@ class WeatherForm extends React.Component {
             <Form {...this.props} onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
                 <Wrapper>
                     <Input name="location" component="input" type="text" placeholder="zip, city, coordinates..."  />
-                    <LoaderIcon isFetching={isFetchingWeatherData} />
+                    <LoaderIcon loading={isFetchingWeatherData} />
                 </Wrapper>
                 { showWeatherData ? this.renderWeatherData() : null }
                 <WeatherButton>{showWeatherData ? "New Location" : "Get Weather"}</WeatherButton>

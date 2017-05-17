@@ -8,7 +8,7 @@ const LoaderIcon = styled.i`
 `
 export default (props) => {
     let classNames = "spinner icon"
-    if(props.isFetching) {
+    if(props.loading) {
         classNames += " loading"
     }
     return (

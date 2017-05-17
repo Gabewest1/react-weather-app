@@ -8,7 +8,8 @@ const Form = styled.form`
     align-items: center;
     padding: 30px;
     height: ${(props) => getHeight(props)};
-    transition: height 1s ease-in-out;
+    transition: all 1s ease-in-out;
+    // transition: width 1s ease-in-out;
  
     background-image: 
         /* gloss gradient */
