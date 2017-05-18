@@ -12,6 +12,7 @@ import LoaderIcon from "./LoaderIcon"
 import Wrapper from "./Wrapper"
 import WeatherDataList from "./WeatherDataList"
 import Top from "./Top"
+import Bottom from "./Bottom"
 
 //import actions and selectors
 import * as actions from "./actions"
@@ -27,28 +28,17 @@ class WeatherForm extends React.Component {
         if(showData) {
             this.props.showWeatherData(false)
             this.props.collapseForm(true)
+            this.props.fetchWeatherData(location)
         } else {
             this.props.fetchWeatherData(location)
         }
     }
     renderWeatherData() {
-        let { 
-            temperature,
-            timezone,
-            humidity,
-            windSpeed,
-            rain,
-            summary,
-            icon 
-        } = this.props
+        let { temperature, summary, icon } = this.props
         return (
             <WeatherDataList>
                 <Top temperature={temperature} summary={summary} icon={icon}/>
-                <li>Timezone: {timezone} </li>
-                <li>Humidity: {humidity} </li>
-                <li>Wind Speed: {windSpeed} </li>
-                <li>Chance of Rain: {rain} </li>
-                <li>Icon to display: {icon} </li>
+                <Bottom {...this.props} />
             </WeatherDataList>
         )
     }
