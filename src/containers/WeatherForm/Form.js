@@ -1,16 +1,24 @@
 import styled from "styled-components"
 
 const Form = styled.form`
+    box-sizing: border-box;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 30px;
     height: ${(props) => getHeight(props)};
+    width: 80%;
+    padding: 30px 10px;
     transition: all 1s ease-in-out;
-    // transition: width 1s ease-in-out;
- 
+    
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: black;
+    }
     background-image: 
         /* gloss gradient */
         -webkit-gradient(
@@ -62,8 +70,7 @@ const Form = styled.form`
 `
 
 function getHeight(props) {
-    const NORMAL_HEIGHT = "120px"
-    const IS_FETCHING_HEIGHT = "160px"
+    const NORMAL_HEIGHT = "200px"
     const EXPANDED_HEIGHT = "90%"
     let { isFetching, data, showData, collapsed } = props.weatherData.toJS()
 
@@ -71,14 +78,6 @@ function getHeight(props) {
         return NORMAL_HEIGHT
     } else {
         return EXPANDED_HEIGHT
-    }
-    
-    if(isFetching) {
-        return IS_FETCHING_HEIGHT
-    } else if(data) {
-        return EXPANDED_HEIGHT
-    } else {
-        return NORMAL_HEIGHT
     }
 }
 export default Form
