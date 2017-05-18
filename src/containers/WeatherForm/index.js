@@ -24,7 +24,7 @@ class WeatherForm extends React.Component {
         let showData = this.props.weatherData.get("showData")
 
         if(!location || location.trim() === "") {
-            this.props.setInputError("location", "Please enter an address")
+            this.props.setInputError("location", "Please enter a location")
             return
         }
 
