@@ -39,7 +39,8 @@ const Button = styled.button`
 
 const Span = styled.span`
     background-color: #E8E8E8;
-
+    width: 100%
+    max-width: 100%;
     background-image: 
         /* gloss gradient */
         -webkit-gradient(
@@ -92,13 +93,13 @@ const Span = styled.span`
     -webkit-transition: -webkit-transform .1s ease-in-out;
     
     display: inline-block;
-    padding: 10px 40px 10px 40px;
+    padding: 10px 0;
     
     color: #3A474D;
     text-transform: uppercase;
     font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
     font-weight: 700;
-    font-size: 32px;
+    font-size: 4vw;
     
     text-shadow: 0px 1px #fff, 0px -1px #262F33;
     
@@ -107,10 +108,6 @@ const Span = styled.span`
         color: #AEBF3B;
         text-shadow: 0px -1px #97A63A;
         cursor: pointer;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 20px;
     }
 `
 
