@@ -4,6 +4,7 @@ import { Field } from "redux-form/immutable"
 
 
 export default (props) => {
+    console.log(props)
     let { name, component, type, placeholder, error } = props
     let inputProps = {name, component, type, placeholder}
     const Input = styled(Field)`
@@ -13,7 +14,7 @@ export default (props) => {
         border-radius: 10px;
         outline: none;
         border-color: ${error ? "red" : ""};
-        
+        ${(props) => console.log(props)};
         &::placeholder {
             color: ${error ? "red" : ""};
         } 

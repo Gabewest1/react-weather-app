@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux"
 import zips from "zips"
 
 //import components
-import { Field, reduxForm } from "redux-form/immutable"
+import { Field, reduxForm, SubmissionError } from "redux-form/immutable"
 import WeatherButton from "./WeatherButton"
 import Form from "./Form"
 import Input from "./Input"
@@ -22,11 +22,6 @@ class WeatherForm extends React.Component {
         let { location } = values
         let errors = {}
         let showData = this.props.weatherData.get("showData")
-
-        if(!location || location.trim() === "") {
-            this.props.setInputError("location", "Please enter a location")
-            return
-        }
 
         //if the weather has already been previously queried and is currently being displayed,
         //then hide the data so the user can make another query. Otherwise, query for the new weather 
@@ -71,6 +66,16 @@ class WeatherForm extends React.Component {
     }
 }
 
+function validate(values) {
+    let { location } = values
+    let errors = {}
+    if(!location || location.trim() === "") {
+        errors.location = "Required"
+    }
+
+    return errors
+}
+
 function mapStateToProps(state) {
     let data = state.weatherData.get("data")
     let temperature = data ? weatherDataSelectors.selectTemperature(data) : false
@@ -98,4 +103,5 @@ function mapDispatchToProps(dispatch) {
 export default reduxForm({
     form: "weatherData",
     fields: ["location"],
+    validate
 })(connect(mapStateToProps, mapDispatchToProps)(WeatherForm))
