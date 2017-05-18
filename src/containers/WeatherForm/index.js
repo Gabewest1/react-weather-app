@@ -20,7 +20,13 @@ import * as weatherDataSelectors from "./selectors"
 class WeatherForm extends React.Component {
     handleSubmit(values) {
         let { location } = values
+        let errors = {}
         let showData = this.props.weatherData.get("showData")
+
+        if(!location || location.trim() === "") {
+            this.props.setInputError("location", "Please enter an address")
+            return
+        }
 
         //if the weather has already been previously queried and is currently being displayed,
         //then hide the data so the user can make another query. Otherwise, query for the new weather 
@@ -47,11 +53,15 @@ class WeatherForm extends React.Component {
         let { handleSubmit } = this.props
         let isFetchingWeatherData = this.props.weatherData.get("isFetching")
         let showWeatherData = this.props.weatherData.get("showData")
-
+        let errorMessage = this.props.weatherData.get("errorMessage")
         return (
             <Form {...this.props} onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
                 <Wrapper>
-                    <Input name="location" component="input" type="text" placeholder="zip, city, coordinates..."  />
+                    <Input name="location" 
+                           component="input"
+                           type="text" 
+                           placeholder="zip, city, coordinates..."
+                           error={errorMessage}  />
                     <LoaderIcon loading={isFetchingWeatherData} />
                 </Wrapper>
                 { showWeatherData ? this.renderWeatherData() : null }

@@ -5,6 +5,7 @@ import {
     FETCH_WEATHER_DATA_ERROR,
     SHOW_WEATHER_DATA,
     COLLAPSE_FORM,
+    SET_ERROR_MESSAGE,
 } from "./constants"
 
 let initialState = fromJS({
@@ -12,7 +13,8 @@ let initialState = fromJS({
     isFetching: false,
     data: false,
     showData: false,
-    error: false
+    error: false,
+    errorMessage: ""
 })
 
 export default function weatherData(state = initialState, action) {
@@ -27,6 +29,8 @@ export default function weatherData(state = initialState, action) {
             return state.set("showData", action.payload)
         case COLLAPSE_FORM: 
             return state.set("collapsed", action.payload)
+        case SET_ERROR_MESSAGE: 
+            return state.set("error", true).set("errorMessage", action.errorMessage)
         default:
             return state
     }
