@@ -12,13 +12,6 @@ const Form = styled.form`
     padding: 30px 10px;
     transition: all 1s ease-in-out;
     
-    &::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: black;
-    }
     background-image: 
         /* gloss gradient */
         -webkit-gradient(
