@@ -1,25 +1,30 @@
 import React from "react"
 import styled from "styled-components"
 import { Field } from "redux-form/immutable"
+import Wrapper from "./Wrapper"
+import LoaderIcon from "./LoaderIcon"
 
+const Input = styled.input`
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 10px;
+    outline: none;
+    border-color: ${({meta: {error}}) => error ? "red" : ""};
+    &::placeholder {
+        color: ${({meta: {error}}) => error ? "red" : ""};
+    } 
+`
 
 export default (props) => {
     console.log(props)
-    let { name, component, type, placeholder, error } = props
-    let inputProps = {name, component, type, placeholder}
-    const Input = styled(Field)`
-        box-sizing: border-box;
-        width: 100%;
-        padding: 10px 15px;
-        border-radius: 10px;
-        outline: none;
-        border-color: ${error ? "red" : ""};
-        ${(props) => console.log(props)};
-        &::placeholder {
-            color: ${error ? "red" : ""};
-        } 
-    `
+    let { loading, placeholder, meta: { error, visited } } = props
+    let placeholderText = error ? error : placeholder
+
     return (
-        <Input {...inputProps} placeholder={error ? error : placeholder} />
+        <Wrapper>
+            <Input {...props} {...props.input} placeholder={placeholderText} />
+            <LoaderIcon loading={loading} />
+        </Wrapper>
     )
 }

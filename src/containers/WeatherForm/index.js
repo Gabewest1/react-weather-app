@@ -19,10 +19,15 @@ import * as actions from "./actions"
 import * as weatherDataSelectors from "./selectors"
 class WeatherForm extends React.Component {
     handleSubmit(values) {
+        console.log(values)
         let { location } = values
         let errors = {}
         let showData = this.props.weatherData.get("showData")
 
+        if(!location || location.trim() === "") {
+            console.log("throwing location error. location: ", location)
+            throw new SubmissionError({location: "Required"})
+        }
         //if the weather has already been previously queried and is currently being displayed,
         //then hide the data so the user can make another query. Otherwise, query for the new weather 
         //data
@@ -48,32 +53,19 @@ class WeatherForm extends React.Component {
         let { handleSubmit } = this.props
         let isFetchingWeatherData = this.props.weatherData.get("isFetching")
         let showWeatherData = this.props.weatherData.get("showData")
-        let errorMessage = this.props.weatherData.get("errorMessage")
+
         return (
             <Form {...this.props} onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
-                <Wrapper>
-                    <Input name="location" 
-                           component="input"
-                           type="text" 
-                           placeholder="zip, city, coordinates..."
-                           error={errorMessage}  />
-                    <LoaderIcon loading={isFetchingWeatherData} />
-                </Wrapper>
+                <Field name="location" 
+                       component={Input}
+                       type="text" 
+                       placeholder="Enter an address..."
+                       loading={isFetchingWeatherData}  />
                 { showWeatherData ? this.renderWeatherData() : null }
                 <WeatherButton>{showWeatherData ? "New Location" : "Get Weather"}</WeatherButton>
             </Form>
         )
     }
-}
-
-function validate(values) {
-    let { location } = values
-    let errors = {}
-    if(!location || location.trim() === "") {
-        errors.location = "Required"
-    }
-
-    return errors
 }
 
 function mapStateToProps(state) {
@@ -103,5 +95,4 @@ function mapDispatchToProps(dispatch) {
 export default reduxForm({
     form: "weatherData",
     fields: ["location"],
-    validate
 })(connect(mapStateToProps, mapDispatchToProps)(WeatherForm))
