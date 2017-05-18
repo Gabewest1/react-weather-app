@@ -5,7 +5,6 @@ import {
     FETCH_WEATHER_DATA_ERROR,
     SHOW_WEATHER_DATA,
     COLLAPSE_FORM,
-    SET_ERROR_MESSAGE,
 } from "./constants"
 
 export function fetchWeatherData(location) {
@@ -18,8 +17,4 @@ export function showWeatherData(bool) {
 
 export function collapseForm(bool) {
     return { type: COLLAPSE_FORM, payload: bool }
-}
-
-export function setInputError(name, errorMessage) {
-    return { type: SET_ERROR_MESSAGE, errorMessage }
 }
