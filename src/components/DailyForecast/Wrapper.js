@@ -5,7 +5,7 @@ export default styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: solid thin black;
+    border: solid thin #A65B0B;
     h1 {
         font-size: 2vw;
 

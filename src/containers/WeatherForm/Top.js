@@ -5,7 +5,6 @@ import WeatherIcon from "../../components/WeatherIcon"
 const Wrapper = styled.div`
     display: flex;
     justify-content: space-around;
-
     > * {
         flex: 1 1 50%;
     }

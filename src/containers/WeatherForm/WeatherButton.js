@@ -10,25 +10,15 @@ const Button = styled.button`
     white-space: nowrap;    
     border-radius: 10px;
     box-shadow: 
-        0px 3px rgba(128, 128, 128, 1),
-        0px 4px rgba(128, 128, 128, 1),
-        0px 5px rgba(128, 128, 128, 1),
-        0px 6px rgba(128, 128, 128, 1),
-        0px 7px rgba(128, 128, 128, 1),
-        0px 8px rgba(128, 128, 128, 1),
-        0px 14px 6px -1px rgba(128, 128, 128, 1);
+        0px 5px 3px 3px rgba(50, 50, 50, 1);
+        
     
     transition: box-shadow .1s ease-in-out;
 
     &:active {
         -webkit-box-shadow: 
-            0px 3px rgba(128,128,128,1),
-            0px 4px rgba(118,118,118,1),
-            0px 5px rgba(108,108,108,1),
-            0px 6px rgba(98,98,98,1),
-            0px 7px rgba(88,88,88,1),
-            0px 8px rgba(78,78,78,1),
-            0px 10px 2px 0px rgba(128,128,128,.6); /* shadow */
+            0px 50px rgba(10,10,10,1),
+            
 
             span {
                 -webkit-transform: translate(0, 3px); /* depth of button press */
