@@ -5,9 +5,9 @@ export default styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: solid thin #A65B0B;
+    border: solid 5px #A65B0B;
     h1 {
-        font-size: 2vw;
+        font-size: 1.5vw;
 
     }
 `
