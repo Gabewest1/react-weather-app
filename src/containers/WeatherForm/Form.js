@@ -10,7 +10,7 @@ const Form = styled.form`
     height: ${(props) => getHeight(props)};
     width: 80%;
     padding: 30px 10px;
-    transition: all 1s ease-in-out;
+    transition: height 1s ease-in-out;
     
     background-image: 
         /* gloss gradient */
@@ -65,7 +65,7 @@ const Form = styled.form`
 function getHeight(props) {
     const NORMAL_HEIGHT = "200px"
     const EXPANDED_HEIGHT = "90%"
-    let { isFetching, data, showData, collapsed } = props.weatherData.toJS()
+    let { collapsed } = props.weatherData.toJS()
 
     if(collapsed) {
         return NORMAL_HEIGHT

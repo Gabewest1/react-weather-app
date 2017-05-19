@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import DailyForecastContainer from "../DailyForecastContainer"
 
 const Wrapper = styled.div`
     display: flex;
@@ -21,18 +22,18 @@ const Span = styled.span`
 `
 
 export default (props) => {
-    let { 
-        timezone,
-        humidity,
-        windSpeed,
-        rain,
-    } = props
+    // let { 
+    //     humidity,
+    //     windSpeed,
+    //     rain,
+    // } = props
+    // // let daily = props.weatherData.get("daily")
+    // console.log("daily:", daily)
+    // let data = daily.data
+    // console.log("data:", data)
     return (
         <Wrapper>
-            {/*<ListItem>Timezone: <Span>{timezone}</Span> </ListItem>*/}
-            <ListItem>Humidity: <Span>{humidity}</Span> </ListItem>
-            <ListItem>Wind Speed: <Span>{windSpeed} mph</Span> </ListItem>
-            <ListItem>Chance of Rain: <Span>{rain}%</Span> </ListItem>
+            <DailyForecastContainer />
         </Wrapper>
     )
 }

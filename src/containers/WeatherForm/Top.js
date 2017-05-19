@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import WeatherIcon from "../../components/WeatherIcon"
 
 const Wrapper = styled.div`
     display: flex;
@@ -21,21 +22,18 @@ const Summary = styled.div`
     align-items: center;
     font-size: 3vw;
 `
-const Icon = styled.img`
-    max-width: 75%
-    max-height: 75%
-`
+
 
 export default (props) => {
-    // const iconSrc = `/assets/images/${props.icon}.png`
-    const iconSrc = `/assets/images/cloudy.png`
+    const iconSrc = `/assets/images/${props.icon}.png`
+
     return (
         <Wrapper>
             <Temperature>
                 {props.temperature}&deg;f
             </Temperature>
             <Summary>
-                <Icon src={iconSrc} alt="icon" />
+                <WeatherIcon src={iconSrc} alt="icon" />
                 Today: {props.summary}
             </Summary>
         </Wrapper>

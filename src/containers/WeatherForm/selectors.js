@@ -7,4 +7,5 @@ export const selectWindSpeed = (state) => state.currently.windSpeed
 export const selectRainProbability = (state) => state.currently.precipProbability
 export const selectSummary = (state) => state.currently.summary
 export const selectIcon = (state) => state.currently.icon
-
+export const selectWeeklyForecast = (state) => state.daily
+export const selectWeeklyForecastData = (state) => state.daily.data

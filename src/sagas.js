@@ -1,7 +1,9 @@
-import { watchFetchWeatherData } from "./containers/WeatherForm/sagas"
+import { watchFetchWeatherData, watchFormHeightAnimationEnd, watchFormHeightAnimationStart } from "./containers/WeatherForm/sagas"
 
 export default function* rootSaga() {
     yield [
-        watchFetchWeatherData()
+        watchFetchWeatherData(),
+        watchFormHeightAnimationEnd(),
+        watchFormHeightAnimationStart(),
     ]
 }

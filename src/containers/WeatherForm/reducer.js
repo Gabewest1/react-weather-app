@@ -16,6 +16,7 @@ let initialState = fromJS({
 })
 
 export default function weatherData(state = initialState, action) {
+    if(action.type === COLLAPSE_FORM || action.type === SHOW_WEATHER_DATA) console.log("type:",action.type)
     switch(action.type) {
         case FETCH_WEATHER_DATA:
             return state.set("isFetching", true)

@@ -1,15 +1,12 @@
 import React from "react"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import zips from "zips"
 
 //import components
 import { Field, reduxForm, SubmissionError } from "redux-form/immutable"
 import WeatherButton from "./WeatherButton"
 import Form from "./Form"
 import Input from "./Input"
-import LoaderIcon from "./LoaderIcon"
-import Wrapper from "./Wrapper"
 import WeatherDataList from "./WeatherDataList"
 import Top from "./Top"
 import Bottom from "./Bottom"
@@ -19,24 +16,19 @@ import * as actions from "./actions"
 import * as weatherDataSelectors from "./selectors"
 class WeatherForm extends React.Component {
     handleSubmit(values) {
-        console.log(values)
         let { location } = values
         let errors = {}
         let showData = this.props.weatherData.get("showData")
 
         if(!location || location.trim() === "") {
-            console.log("throwing location error. location: ", location)
             throw new SubmissionError({location: "Required"})
         }
-        //if the weather has already been previously queried and is currently being displayed,
-        //then hide the data so the user can make another query. Otherwise, query for the new weather 
-        //data
-        if(showData) {
-            this.props.showWeatherData(false)
-            this.props.collapseForm(true)
-            this.props.fetchWeatherData(location)
-        } else {
-            this.props.fetchWeatherData(location)
+        
+        this.props.fetchWeatherData(location)
+    }
+    handleHeightAnimation(e) {
+        if(e.target.id === "weatherForm") {
+            this.props.endFormHeightAnimation(e.target)
         }
     }
     renderWeatherData() {
@@ -55,7 +47,11 @@ class WeatherForm extends React.Component {
         let showWeatherData = this.props.weatherData.get("showData")
 
         return (
-            <Form {...this.props} onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
+            <Form {...this.props}
+                  id="weatherForm" 
+                  onSubmit={handleSubmit(this.handleSubmit.bind(this))} 
+                  onTransitionEnd={this.handleHeightAnimation.bind(this)}
+            >
                 <Field name="location" 
                        component={Input}
                        type="text" 

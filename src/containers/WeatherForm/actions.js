@@ -5,6 +5,8 @@ import {
     FETCH_WEATHER_DATA_ERROR,
     SHOW_WEATHER_DATA,
     COLLAPSE_FORM,
+    ANIMATE_FORM_HEIGHT_START,
+    ANIMATE_FORM_HEIGHT_END,
 } from "./constants"
 
 export function fetchWeatherData(location) {
@@ -17,4 +19,12 @@ export function showWeatherData(bool) {
 
 export function collapseForm(bool) {
     return { type: COLLAPSE_FORM, payload: bool }
+}
+
+export function startFormHeightAnimation() {
+    return { type: ANIMATE_FORM_HEIGHT_START }
+}
+
+export function endFormHeightAnimation() {
+    return { type: ANIMATE_FORM_HEIGHT_END }
 }

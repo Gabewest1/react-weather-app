@@ -17,7 +17,6 @@ const Input = styled.input`
 `
 
 export default (props) => {
-    console.log(props)
     let { loading, placeholder, meta: { error, visited } } = props
     let placeholderText = error ? error : placeholder
 
