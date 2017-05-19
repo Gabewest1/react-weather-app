@@ -22,15 +22,6 @@ const Span = styled.span`
 `
 
 export default (props) => {
-    // let { 
-    //     humidity,
-    //     windSpeed,
-    //     rain,
-    // } = props
-    // // let daily = props.weatherData.get("daily")
-    // console.log("daily:", daily)
-    // let data = daily.data
-    // console.log("data:", data)
     return (
         <Wrapper>
             <DailyForecastContainer />
