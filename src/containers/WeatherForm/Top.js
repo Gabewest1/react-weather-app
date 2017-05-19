@@ -24,15 +24,13 @@ const Summary = styled.div`
 
 
 export default (props) => {
-    const iconSrc = `/assets/images/${props.icon}.png`
-
     return (
         <Wrapper>
             <Temperature>
                 {props.temperature}&deg;f
             </Temperature>
             <Summary>
-                <WeatherIcon src={iconSrc} alt="icon" />
+                <WeatherIcon icon={props.icon} />
                 Today: {props.summary}
             </Summary>
         </Wrapper>
