@@ -5,6 +5,7 @@ const Wrapper = styled.div`
     align-items: center;
     width: 100%;
     position: relative;
+    justify-content: space-between;
 `
 
 export default Wrapper
