@@ -8,11 +8,16 @@ import {
     COLLAPSE_FORM,
     ANIMATE_FORM_HEIGHT_START,
     ANIMATE_FORM_HEIGHT_END,
+    FETCH_CURRENT_LOCATION_WEATHER_DATA,
 } from "./constants"
 
 export function* watchFetchWeatherData() {
     console.log("In watcher function")
     yield takeEvery(FETCH_WEATHER_DATA, fetchLocationData)
+}
+export function* watchFetchCurrentLocationWeatherData() {
+    console.log("In watcher function")
+    yield takeEvery(FETCH_CURRENT_LOCATION_WEATHER_DATA, getCurrentLocation)
 }
 export function* watchFormHeightAnimationStart() {
     yield takeEvery(ANIMATE_FORM_HEIGHT_START, startFormHeightAnimation)
@@ -52,7 +57,26 @@ export function* endFormHeightAnimation(action) {
         yield startFormHeightAnimation()
     }
 }
+export function* getCurrentLocation() {
 
+    try {
+        let position = yield new Promise(resolve => {
+            navigator.geolocation.getCurrentPosition(position => {
+                resolve(position)
+            })
+        })
+        let latLng = {lat: position.coords.latitude, lng: position.coords.longitude}
+        const apiKey = "AIzaSyBlEuzRfwGV7IIIpUtefZWzHTg5Ip6UO3E"
+        const googleGeocoderApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latLng.lat+","+latLng.lng}&key=${apiKey}`
+        let response = yield call(fetch, googleGeocoderApiUrl)
+        let address = yield response.json()
+        console.log("address", address.results[0])
+        yield put({ type: FETCH_WEATHER_DATA })
+        yield fetchLocationData({location: address.results[0]})
+    } catch(e) {
+        console.log(e)
+    }
+}
 export function* fetchLocationData(action) {
     console.log("Entered fetchLocationData")
     const { location } = action
