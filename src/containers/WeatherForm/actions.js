@@ -7,10 +7,15 @@ import {
     COLLAPSE_FORM,
     ANIMATE_FORM_HEIGHT_START,
     ANIMATE_FORM_HEIGHT_END,
+    FETCH_CURRENT_LOCATION_WEATHER_DATA,
 } from "./constants"
 
 export function fetchWeatherData(location) {
     return { type: FETCH_WEATHER_DATA, location }
+}
+
+export function fetchCurrentLocationWeatherData() {
+    return { type: FETCH_CURRENT_LOCATION_WEATHER_DATA }
 }
 
 export function showWeatherData(bool) {
