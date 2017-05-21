@@ -1,3 +1,4 @@
+import React from "react"
 import styled from "styled-components"
 
 const List = styled.ul`
@@ -10,4 +11,16 @@ const List = styled.ul`
     flex-grow: 1;
 `
 
-export default List
+export default class WeatherDataList extends React.Component {
+    componentDidMount() {
+        //Dont want the background iFrame to play any sound
+        let iFrame = document.getElementById("bgFrame")
+        console.log("iFrame: ", iFrame)
+        iFrame.mute()
+    }
+    render() {
+        return (
+            <List {...this.props} />
+        )
+    }
+}
