@@ -4,7 +4,6 @@ import WeatherIcon from "../WeatherIcon"
 
 export default (props) => {
     let { icon, precipProbability, maxTemp, minTemp, summary } = props
-    console.log("DailyForecast props:", props)
 
     return (
         <Wrapper>
