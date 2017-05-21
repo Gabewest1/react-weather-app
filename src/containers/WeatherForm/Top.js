@@ -1,10 +1,16 @@
 import React from "react"
 import styled from "styled-components"
 import WeatherIcon from "../../components/WeatherIcon"
-
+import { primary2, secondary, tertiary } from "../../theme/colors"
 const Wrapper = styled.div`
     display: flex;
+    position: relative;
     justify-content: space-around;
+    background-color: ${secondary};
+    border-radius: 10px;
+    margin: 20px;
+    border: solid 10px ${tertiary};
+
     > * {
         flex: 1 1 50%;
     }
