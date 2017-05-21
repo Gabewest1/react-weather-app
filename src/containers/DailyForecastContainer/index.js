@@ -10,7 +10,7 @@ import * as weatherDataSelectors from "../WeatherForm/selectors"
 class DailyForecastContainer extends React.Component {
     createDailyForecasts() {
         let weeklyForecastData = this.props.weeklyForecastData
-        console.log("weeklyForecastData: ", weeklyForecastData)
+
         let forecasts = weeklyForecastData.map((dailyForecastData, key) => {
             let { summary, icon, precipProbability, rain, apparentTemperatureMax, apparentTemperatureMin } = dailyForecastData
             let dailyForecastProps = { summary, icon, precipProbability, rain, maxTemp:apparentTemperatureMax, minTemp:apparentTemperatureMin }
