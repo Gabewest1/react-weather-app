@@ -6,7 +6,7 @@ const Button = styled.button`
     box-sizing: border-box;
     outline: none;
     padding: 0;
-    width: 100%;
+    flex: 0 1 45%;
     white-space: nowrap;    
     border-radius: 10px;
     box-shadow: 
@@ -103,7 +103,7 @@ const Span = styled.span`
 
 export default (props) => {
     return (
-        <Button>
+        <Button {...props}>
             <Span>{props.children}</Span>
         </Button>
     )
