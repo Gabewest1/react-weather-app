@@ -1,6 +1,7 @@
 import styled from "styled-components"
+import { primary } from "../../theme/colors"
 
-const Form = styled.form`
+const Form = styled.div`
     box-sizing: border-box;
     text-align: center;
     display: flex;
@@ -11,7 +12,7 @@ const Form = styled.form`
     width: 80%;
     padding: 30px 10px;
     transition: height 1s ease-in-out;
-    background-color: rgba(205,205,205, .8);
+    background-color: rgba(43, 58, 66, .8);
     border-radius: 10px;
     // background-image: 
     //     /* gloss gradient */
