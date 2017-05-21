@@ -9,13 +9,15 @@ import Form from "./Form"
 import Input from "./Input"
 import WeatherDataList from "./WeatherDataList"
 import Top from "./Top"
-import Bottom from "./Bottom"
+import Wrapper from "./Wrapper"
+import DailyForecastContainer from "../DailyForecastContainer"
 
 //import actions and selectors
 import * as actions from "./actions"
 import * as weatherDataSelectors from "./selectors"
 class WeatherForm extends React.Component {
     handleSubmit(values) {
+        console.log("handle submit called")
         let { location } = values
         let errors = {}
         let showData = this.props.weatherData.get("showData")
@@ -36,7 +38,7 @@ class WeatherForm extends React.Component {
         return (
             <WeatherDataList>
                 <Top temperature={temperature} summary={summary} icon={icon}/>
-                <Bottom {...this.props} />
+                <DailyForecastContainer />
             </WeatherDataList>
         )
     }
@@ -48,8 +50,7 @@ class WeatherForm extends React.Component {
 
         return (
             <Form {...this.props}
-                  id="weatherForm" 
-                  onSubmit={handleSubmit(this.handleSubmit.bind(this))} 
+                  id="weatherForm"  
                   onTransitionEnd={this.handleHeightAnimation.bind(this)}
             >
                 <Field name="location" 
@@ -58,7 +59,12 @@ class WeatherForm extends React.Component {
                        placeholder="Enter an address..."
                        loading={isFetchingWeatherData}  />
                 { showWeatherData ? this.renderWeatherData() : null }
-                <WeatherButton>{showWeatherData ? "New Location" : "Get Weather"}</WeatherButton>
+                <Wrapper>
+                    <WeatherButton onClick={handleSubmit(this.handleSubmit.bind(this))}>
+                        {showWeatherData ? "New Location" : "Get Weather"}
+                    </WeatherButton>
+                    <WeatherButton onClick={this.props.fetchCurrentLocationWeatherData}>My Location</WeatherButton>
+                </Wrapper>
             </Form>
         )
     }
