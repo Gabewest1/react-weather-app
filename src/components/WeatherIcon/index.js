@@ -8,7 +8,8 @@ const WeatherIcon = styled.img`
 
 export default (props) => {
     let { icon } = props
-    let iconSrc = `/assets/images/${icon}.png`
+    // let iconSrc = `/assets/images/${icon}.png`
+    let iconSrc = `/assets/images/clear-day.svg`
 
     return (
         <WeatherIcon src={iconSrc} alt={icon} />
