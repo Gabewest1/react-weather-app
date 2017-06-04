@@ -3,8 +3,7 @@ import { Route } from "react-router-dom"
 
 import Container from "./Container"
 import Home from "../Home"
-import NightSky from "../../components/Stars"
-
+import NightSky from "../../components/NightSky"
 
 import "semantic-ui-icon/icon.min.css"
 
