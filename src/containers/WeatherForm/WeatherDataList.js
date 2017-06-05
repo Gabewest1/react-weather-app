@@ -12,12 +12,6 @@ const List = styled.ul`
 `
 
 export default class WeatherDataList extends React.Component {
-    componentDidMount() {
-        //Dont want the background iFrame to play any sound
-        let iFrame = document.getElementById("bgFrame")
-        console.log("iFrame: ", iFrame)
-        iFrame.mute()
-    }
     render() {
         return (
             <List {...this.props} />

@@ -69,17 +69,19 @@ export function* getCurrentLocation() {
         const apiKey = "AIzaSyBlEuzRfwGV7IIIpUtefZWzHTg5Ip6UO3E"
         const googleGeocoderApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latLng.lat+","+latLng.lng}&key=${apiKey}`
         let response = yield call(fetch, googleGeocoderApiUrl)
-        let address = yield response.json()
-        console.log("address", address.results[0])
+        let locationInfo = yield response.json()
+        console.log(locationInfo)
+        let address = locationInfo.results[0].formatted_address
+        console.log("address", address)
         yield put({ type: FETCH_WEATHER_DATA })
-        yield fetchLocationData({location: address.results[0]})
+        yield fetchLocationData({location: address})
     } catch(e) {
         console.log(e)
     }
 }
 export function* fetchLocationData(action) {
-    console.log("Entered fetchLocationData")
     const { location } = action
+    console.log("location:", location)
     const apiKey = "AIzaSyBlEuzRfwGV7IIIpUtefZWzHTg5Ip6UO3E"
     const googleGeocoderApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${apiKey}`
 
