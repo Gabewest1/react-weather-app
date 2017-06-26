@@ -8,7 +8,11 @@ export default (props) => {
     return (
         <Wrapper>
             <WeatherIcon icon={icon} />
-            <h1>hi: {maxTemp} / lo: {minTemp}</h1>
+            <h1>
+                <b>{maxTemp}&deg;f</b> 
+                <br /> 
+                {minTemp}&deg;f
+            </h1>
         </Wrapper>
     )
 }
