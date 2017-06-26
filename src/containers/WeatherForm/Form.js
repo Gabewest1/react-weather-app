@@ -18,7 +18,7 @@ const Form = styled.div`
 
 function getHeight(props) {
     const NORMAL_HEIGHT = "12.5em"
-    const EXPANDED_HEIGHT = "70%"
+    const EXPANDED_HEIGHT = "90%"
     let { collapsed } = props.weatherData.toJS()
 
     if(collapsed) {
