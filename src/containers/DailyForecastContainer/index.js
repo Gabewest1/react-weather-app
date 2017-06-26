@@ -15,7 +15,7 @@ class DailyForecastContainer extends React.Component {
             let { summary, icon, precipProbability, rain, apparentTemperatureMax, apparentTemperatureMin } = dailyForecastData
             let dailyForecastProps = { summary, icon, precipProbability, rain, maxTemp:apparentTemperatureMax, minTemp:apparentTemperatureMin }
             return (
-                <DailyForecast key={key} {...dailyForecastData} />
+                <DailyForecast key={key} {...dailyForecastProps} />
             )
         })
 
