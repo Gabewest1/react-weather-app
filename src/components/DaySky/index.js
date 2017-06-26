@@ -10,15 +10,8 @@ let DaySky = styled(OuterspaceStyles)`
 `
 
 let Sun = styled(OuterspaceStyles)`
-    // position: absolute;
-    // right: 0;
-    // top: 0;
     background: url(/assets/images/daysky--sun.png) no-repeat;
     z-index: -3;
-    @media (max-width: 968px) {
-        width: 575px;
-        height: 575px;
-    }
 `
 let Clouds = styled(OuterspaceStyles)`
     background: url(/assets/images/daysky--clouds.png);     
