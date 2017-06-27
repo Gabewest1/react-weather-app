@@ -8,6 +8,8 @@ import {
     ANIMATE_FORM_HEIGHT_START,
     ANIMATE_FORM_HEIGHT_END,
     FETCH_CURRENT_LOCATION_WEATHER_DATA,
+    SET_FORM_COLLAPSE_AMOUNT,
+    SET_FORM_HEIGHT,
 } from "./constants"
 
 export function fetchWeatherData(location) {
@@ -33,3 +35,6 @@ export function startFormHeightAnimation() {
 export function endFormHeightAnimation() {
     return { type: ANIMATE_FORM_HEIGHT_END }
 }
+
+export const setHeightToCollapse = (height) => ({ type: SET_FORM_COLLAPSE_AMOUNT, height })
+export const setFormHeight = (height) => ({ type: SET_FORM_HEIGHT, height })
