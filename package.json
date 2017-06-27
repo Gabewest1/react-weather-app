@@ -12,6 +12,8 @@
     "dark-sky": "^1.0.10",
     "history": "^4.6.1",
     "immutable": "^3.8.1",
+    "react-height": "^3.0.0",
+    "react-motion": "^0.5.0",
     "react-redux": "^5.0.4",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
