@@ -36,8 +36,9 @@ export default (props) => {
                 {props.temperature}&deg;f
             </Temperature>
             <Summary>
+                <b>Today:</b> 
                 <WeatherIcon icon={props.icon} />
-                Today: {props.summary}
+                <em>{props.summary}</em>
             </Summary>
         </Wrapper>
     )
