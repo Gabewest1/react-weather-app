@@ -1,4 +1,5 @@
 import React from "react"
+import { ReactHeight } from "react-height"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 
@@ -7,7 +8,6 @@ import { Field, reduxForm, SubmissionError } from "redux-form/immutable"
 import WeatherButton from "./WeatherButton"
 import Form from "./Form"
 import Input from "./Input"
-import WeatherDataList from "./WeatherDataList"
 import Top from "./Top"
 import Wrapper from "./Wrapper"
 import DailyForecastContainer from "../DailyForecastContainer"
@@ -33,32 +33,42 @@ class WeatherForm extends React.Component {
             this.props.endFormHeightAnimation(e.target)
         }
     }
-    renderWeatherData() {
+    renderWeatherData(showWeatherData) {
         let { temperature, summary, icon } = this.props
         return (
-            <WeatherDataList>
+            <ReactHeight 
+                onHeightReady={(height) => this.props.setHeightToCollapse(height)} 
+                style={{opacity: showWeatherData ? 1 : 0, position: showWeatherData ? "relative" : "absolute"}}
+            >
                 <Top temperature={temperature} summary={summary} icon={icon}/>
                 <DailyForecastContainer />
-            </WeatherDataList>
+            </ReactHeight>
         )
     }
-
+    setFormHeight = (height) => {
+        let isFormHeightAlreadySet = this.props.weatherData.get("height")
+        if(!isFormHeightAlreadySet) {
+            this.props.setFormHeight(height)
+        }
+    }
     render() {
         let { handleSubmit } = this.props
         let isFetchingWeatherData = this.props.weatherData.get("isFetching")
         let showWeatherData = this.props.weatherData.get("showData")
+        let weatherData = this.props.weatherData.get("data")
 
         return (
             <Form {...this.props}
                   id="weatherForm"  
                   onTransitionEnd={this.handleHeightAnimation.bind(this)}
+                  onHeightReady={(height) => this.setFormHeight(height)}
             >
                 <Field name="location" 
                        component={Input}
                        type="text" 
                        placeholder="Enter an address..."
                        loading={isFetchingWeatherData}  />
-                { showWeatherData ? this.renderWeatherData() : null }
+                { weatherData ? this.renderWeatherData(showWeatherData) : null }
                 <Wrapper>
                     <WeatherButton onClick={handleSubmit(this.handleSubmit.bind(this))}>
                         {showWeatherData ? "New Location" : "Get Weather"}
