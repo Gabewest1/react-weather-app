@@ -1,7 +1,8 @@
 import styled from "styled-components"
+import { ReactHeight } from "react-height"
 import { primary } from "../../theme/colors"
 
-const Form = styled.div`
+const Form = styled(ReactHeight)`
     box-sizing: border-box;
     text-align: center;
     display: flex;
@@ -18,12 +19,13 @@ const Form = styled.div`
 
 function getHeight(props) {
     const NORMAL_HEIGHT = "12.5em"
-    const EXPANDED_HEIGHT = "90%"
+    const EXPANDED_HEIGHT = props.weatherData.get("heightToCollapse") + props.weatherData.get("height")+"px"
     let { collapsed } = props.weatherData.toJS()
 
     if(collapsed) {
         return NORMAL_HEIGHT
     } else {
+        console.log("Expanding height to:", EXPANDED_HEIGHT)
         return EXPANDED_HEIGHT
     }
 }
