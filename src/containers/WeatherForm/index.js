@@ -45,6 +45,7 @@ class WeatherForm extends React.Component {
             </ReactHeight>
         )
     }
+
     setFormHeight = (height) => {
         let isFormHeightAlreadySet = this.props.weatherData.get("height")
         if(!isFormHeightAlreadySet) {
