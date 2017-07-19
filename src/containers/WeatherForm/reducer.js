@@ -3,6 +3,7 @@ import {
     FETCH_WEATHER_DATA,
     FETCH_WEATHER_DATA_SUCCESS,
     FETCH_WEATHER_DATA_ERROR,
+    FETCH_CURRENT_LOCATION_WEATHER_DATA,
     SHOW_WEATHER_DATA,
     COLLAPSE_FORM,
     SET_FORM_COLLAPSE_AMOUNT,
@@ -21,6 +22,8 @@ let initialState = fromJS({
 
 export default function weatherData(state = initialState, action) {
     switch(action.type) {
+        case FETCH_CURRENT_LOCATION_WEATHER_DATA:
+            return state.set("isFetching", true)
         case FETCH_WEATHER_DATA:
             return state.set("isFetching", true)
         case FETCH_WEATHER_DATA_SUCCESS: 
