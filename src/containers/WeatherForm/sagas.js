@@ -1,5 +1,5 @@
 import {  delay } from "redux-saga"
-import { takeEvery, put, call, select } from "redux-saga/effects"
+import { takeEvery, take, put, call, select } from "redux-saga/effects"
 import {
     FETCH_WEATHER_DATA,
     FETCH_WEATHER_DATA_SUCCESS,
@@ -9,21 +9,17 @@ import {
     ANIMATE_FORM_HEIGHT_START,
     ANIMATE_FORM_HEIGHT_END,
     FETCH_CURRENT_LOCATION_WEATHER_DATA,
+    SET_FORM_COLLAPSE_AMOUNT,
 } from "./constants"
 
 export function* watchFetchWeatherData() {
-    console.log("In watcher function")
     yield takeEvery(FETCH_WEATHER_DATA, fetchLocationData)
 }
 export function* watchFetchCurrentLocationWeatherData() {
-    console.log("In watcher function")
     yield takeEvery(FETCH_CURRENT_LOCATION_WEATHER_DATA, getCurrentLocation)
 }
 export function* watchFormHeightAnimationStart() {
     yield takeEvery(ANIMATE_FORM_HEIGHT_START, startFormHeightAnimation)
-}
-export function* watchFormHeightAnimationEnd() {
-    yield takeEvery(ANIMATE_FORM_HEIGHT_END, endFormHeightAnimation)
 }
 
 export function* startFormHeightAnimation(action) {
@@ -32,21 +28,11 @@ export function* startFormHeightAnimation(action) {
     if(collapsed) {
         yield put({ type: COLLAPSE_FORM, payload: false })
     } else {
-        console.log("COLLAPSE_FORM")
         yield put({ type: COLLAPSE_FORM, payload: true })
-        console.log("SHOW_WEATHER_DATA")        
         yield put({ type: SHOW_WEATHER_DATA, payload: false })
     }
-}
-export function* expandFormAnimation() {
-    yield put({ type: COLLAPSE_FORM, payload: false })    
-}
-export function* collapseFormAnimation() {
-    yield put({ type: COLLAPSE_FORM, payload: true })    
-}
 
 export function* endFormHeightAnimation(action) {
-    console.log("endAnimationHeight")
     const state = yield select()
     const collapsed = state.weatherData.get("collapsed")
     const data = state.weatherData.get("data")
@@ -66,14 +52,14 @@ export function* getCurrentLocation() {
             })
         })
         let latLng = {lat: position.coords.latitude, lng: position.coords.longitude}
+        
         const apiKey = "AIzaSyBlEuzRfwGV7IIIpUtefZWzHTg5Ip6UO3E"
         const googleGeocoderApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latLng.lat+","+latLng.lng}&key=${apiKey}`
         let response = yield call(fetch, googleGeocoderApiUrl)
         let locationInfo = yield response.json()
-        console.log(locationInfo)
         let address = locationInfo.results[0].formatted_address
         console.log("address", address)
-        yield put({ type: FETCH_WEATHER_DATA })
+
         yield fetchLocationData({location: address})
     } catch(e) {
         console.log(e)
