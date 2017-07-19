@@ -8,8 +8,8 @@ const Wrapper = styled.div`
     justify-content: space-around;
     background-color: ${secondary};
     border-radius: 10px;
-    margin: 20px;
-    border: solid 10px ${tertiary};
+    margin-bottom: 1.5em;
+    border: solid 2px ${primary2};
 
     > * {
         flex: 1 1 50%;

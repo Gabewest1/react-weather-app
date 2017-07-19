@@ -69,7 +69,9 @@ class WeatherForm extends React.Component {
                        type="text" 
                        placeholder="Enter an address..."
                        loading={isFetchingWeatherData}  />
-                { weatherData ? this.renderWeatherData(showWeatherData) : null }
+                <div style={{width: "100%", boxSizing: "border-box", padding: "1.5em"}}>
+                    { weatherData ? this.renderWeatherData(showWeatherData) : null }
+                </div>
                 <Wrapper>
                     <WeatherButton onClick={handleSubmit(this.handleSubmit.bind(this))}>
                         {showWeatherData ? "New Location" : "Get Weather"}

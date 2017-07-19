@@ -1,17 +1,25 @@
 import styled from "styled-components"
-import { primary } from "../../theme/colors"
+import { primary2, secondary } from "../../theme/colors"
 
 export default styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: ${secondary};
+    border-radius: 10px;
 
     > * {
-        border-top: solid thin ${primary};
-        border-right: solid thin ${primary};
-
+        border: solid thin ${primary2};
+        
+        &:first-child {
+            border-right: none;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
         &:last-child {
             border-right: none;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
         }
     }
 `

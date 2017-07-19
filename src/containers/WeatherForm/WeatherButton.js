@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { primary, primary2 } from "../../theme/colors"
 
 //Styling for the size of the font for the button is located in the `span` element
 const Button = styled.button`
@@ -85,7 +86,7 @@ const Span = styled.span`
     display: inline-block;
     padding: 10px 0;
     
-    color: #3A474D;
+    color: ${primary};
     text-transform: uppercase;
     font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
     font-weight: 700;
@@ -95,7 +96,7 @@ const Span = styled.span`
     
 
     &:hover {
-        color: #AEBF3B;
+        color: ${primary2};
         text-shadow: 0px -1px #97A63A;
         cursor: pointer;
     }
