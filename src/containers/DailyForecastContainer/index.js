@@ -11,13 +11,16 @@ class DailyForecastContainer extends React.Component {
     createDailyForecasts() {
         let weeklyForecastData = this.props.weeklyForecastData
 
-        let forecasts = weeklyForecastData.map((dailyForecastData, key) => {
-            let { summary, icon, precipProbability, rain, apparentTemperatureMax, apparentTemperatureMin } = dailyForecastData
-            let dailyForecastProps = { summary, icon, precipProbability, rain, maxTemp:apparentTemperatureMax, minTemp:apparentTemperatureMin }
-            return (
-                <DailyForecast key={key} {...dailyForecastProps} />
-            )
-        })
+        let forecasts =
+             weeklyForecastData
+                .filter((x, index) => index < 7)
+                .map((dailyForecastData, key) => {
+                    let { summary, icon, precipProbability, rain, apparentTemperatureMax, apparentTemperatureMin } = dailyForecastData
+                    let dailyForecastProps = { summary, icon, precipProbability, rain, maxTemp:apparentTemperatureMax, minTemp:apparentTemperatureMin }
+                    return (
+                        <DailyForecast key={key} {...dailyForecastProps} />
+                    )
+                })
 
         return forecasts
     }
