@@ -6,11 +6,11 @@ import { bindActionCreators } from "redux"
 //import components
 import { Field, reduxForm, SubmissionError } from "redux-form/immutable"
 import WeatherButton from "./WeatherButton"
+import Main from "./Main"
 import Form from "./Form"
 import Input from "./Input"
 import Top from "./Top"
 import Wrapper from "./Wrapper"
-import DailyForecastContainer from "../DailyForecastContainer"
 
 //import actions and selectors
 import * as actions from "./actions"
@@ -33,19 +33,6 @@ class WeatherForm extends React.Component {
             this.props.endFormHeightAnimation(e.target)
         }
     }
-    renderWeatherData(showWeatherData) {
-        let { temperature, summary, icon } = this.props
-        return (
-            <ReactHeight 
-                onHeightReady={(height) => this.props.setHeightToCollapse(height)} 
-                style={{opacity: showWeatherData ? 1 : 0, position: showWeatherData ? "relative" : "absolute"}}
-            >
-                <Top temperature={temperature} summary={summary} icon={icon}/>
-                <DailyForecastContainer />
-            </ReactHeight>
-        )
-    }
-
     setFormHeight = (height) => {
         let isFormHeightAlreadySet = this.props.weatherData.get("height")
         if(!isFormHeightAlreadySet) {
@@ -53,9 +40,8 @@ class WeatherForm extends React.Component {
         }
     }
     render() {
-        let { handleSubmit } = this.props
+        let { handleSubmit, showWeatherData } = this.props
         let isFetchingWeatherData = this.props.weatherData.get("isFetching")
-        let showWeatherData = this.props.weatherData.get("showData")
         let weatherData = this.props.weatherData.get("data")
 
         return (
@@ -69,9 +55,7 @@ class WeatherForm extends React.Component {
                        type="text" 
                        placeholder="Enter an address..."
                        loading={isFetchingWeatherData}  />
-                <div style={{width: "100%", boxSizing: "border-box", padding: "1.5em"}}>
-                    { weatherData ? this.renderWeatherData(showWeatherData) : null }
-                </div>
+                { weatherData ? <Main {...this.props} /> : null }
                 <Wrapper>
                     <WeatherButton onClick={handleSubmit(this.handleSubmit.bind(this))}>
                         {showWeatherData ? "New Location" : "Get Weather"}
@@ -85,6 +69,7 @@ class WeatherForm extends React.Component {
 
 function mapStateToProps(state) {
     let data = state.weatherData.get("data")
+    let showData = state.weatherData.get("showData")
     let temperature = data ? weatherDataSelectors.selectTemperature(data) : false
     let timezone = data ? weatherDataSelectors.selectTimezone(data) : false
     let humidity = data ? weatherDataSelectors.selectHumidity(data) : false
@@ -94,13 +79,14 @@ function mapStateToProps(state) {
     let icon = data ? weatherDataSelectors.selectIcon(data) : false
     return {
         weatherData: state.weatherData,
+        showData,
         temperature,
         timezone,
         humidity,
         windSpeed,
         rain,
         summary,
-        icon
+        icon,
     }
 }
 
