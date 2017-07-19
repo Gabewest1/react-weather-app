@@ -25,13 +25,26 @@ export function* watchFormHeightAnimationStart() {
 export function* startFormHeightAnimation(action) {
     const state = yield select()
     const collapsed = state.weatherData.get("collapsed")
+    const hasCollapseAmountBeenSet = state.weatherData.get("heightToCollapse")
+
     if(collapsed) {
+        yield put({ type: SHOW_WEATHER_DATA, payload: false })       
+
+        if(!hasCollapseAmountBeenSet) {
+            console.log(hasCollapseAmountBeenSet)
+            yield take(SET_FORM_COLLAPSE_AMOUNT)
+        }
+        
         yield put({ type: COLLAPSE_FORM, payload: false })
+
+        
     } else {
         yield put({ type: COLLAPSE_FORM, payload: true })
         yield put({ type: SHOW_WEATHER_DATA, payload: false })
     }
 
+
+}
 export function* endFormHeightAnimation(action) {
     const state = yield select()
     const collapsed = state.weatherData.get("collapsed")
@@ -41,10 +54,13 @@ export function* endFormHeightAnimation(action) {
         yield put({ type: SHOW_WEATHER_DATA, payload: true })
     } else if(collapsed && data) {
         yield startFormHeightAnimation()
+        console.log("Form just collapsed and is re-opening")
+        yield take(ANIMATE_FORM_HEIGHT_END)
+        console.log("Form has reopened!!! :DDDDDDDD")
+        yield put({ type: SHOW_WEATHER_DATA, payload: true })
     }
 }
 export function* getCurrentLocation() {
-
     try {
         let position = yield new Promise(resolve => {
             navigator.geolocation.getCurrentPosition(position => {
@@ -81,18 +97,20 @@ export function* fetchLocationData(action) {
         yield put({type: FETCH_WEATHER_DATA_ERROR})        
     }
 }
-
 export function* fetchWeatherData(lat, lang) {
     console.log("fetching weather data yooooo")
     try {
         //This url might need to change when i go into production
-        const weatherApiUrl = `c373bad511a5643591596847902ff1b2/${lat+","+lang}`
+        const weatherApiUrl = `c373bad511a5643591596847902ff1b2/${lat+","+lang}`        
         const response = yield call(fetch, weatherApiUrl)
         const data = yield response.json()
-
-        yield delay(2000)
+        
         yield put({type: FETCH_WEATHER_DATA_SUCCESS, data})
+        console.log("Waiting for form height animation")
         yield startFormHeightAnimation()
+        yield take(ANIMATE_FORM_HEIGHT_END)
+        yield endFormHeightAnimation()
+        console.log("form height animation finished")
     
     } catch(e) {
         console.log(e)
