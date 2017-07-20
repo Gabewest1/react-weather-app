@@ -44,7 +44,6 @@ export default (props) => {
                     <WeatherIcon icon={props.icon} />
                     <em>{props.summary}</em>
                 </Summary>
-                {props.children}
             </Wrapper>
         </div>
     )

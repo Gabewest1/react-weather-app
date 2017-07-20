@@ -34,7 +34,6 @@ export function* startFormHeightAnimation(action) {
         //Get new height of currently hidden element to determine space needed
         //to increase the container by
         let main = document.getElementById("main")
-        let h1 =  state.weatherData.get("height")
         let height = parseInt(window.getComputedStyle(main).getPropertyValue("height").replace("px", "")) 
 
         yield put({ type: SET_FORM_COLLAPSE_AMOUNT, height })
