@@ -77,6 +77,8 @@ function mapStateToProps(state) {
     let rain = data ? weatherDataSelectors.selectRainProbability(data) : false
     let summary = data ? weatherDataSelectors.selectSummary(data) : false
     let icon = data ? weatherDataSelectors.selectIcon(data) : false
+    let location = state.weatherData.get("location")
+
     return {
         weatherData: state.weatherData,
         showData,
@@ -87,6 +89,7 @@ function mapStateToProps(state) {
         rain,
         summary,
         icon,
+        location,
     }
 }
 

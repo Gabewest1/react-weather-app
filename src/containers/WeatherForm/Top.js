@@ -20,26 +20,32 @@ const Temperature = styled(Textfit)`
     width: 40%;
     margin-left: auto;
 `
-const Summary = styled(Textfit)`
+const Summary = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 50%;
 `
+const Location = styled.div`
 
+`
 
 export default (props) => {
     return (
-        <Wrapper>
-            <Temperature mode="single" max={150}>
-                {props.temperature}&deg;f
-            </Temperature>
-            <Summary>
-                <b>Today:</b> 
-                <WeatherIcon icon={props.icon} />
-                <em>{props.summary}</em>
-            </Summary>
-            {props.children}
-        </Wrapper>
+        <div>
+            <Location>
+                <b>{props.location}</b>                 
+            </Location>
+            <Wrapper>
+                <Temperature mode="single" max={150}>
+                    {props.temperature}&deg;f
+                </Temperature>
+                <Summary>
+                    <WeatherIcon icon={props.icon} />
+                    <em>{props.summary}</em>
+                </Summary>
+                {props.children}
+            </Wrapper>
+        </div>
     )
 }
