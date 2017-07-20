@@ -5,13 +5,13 @@ import { primary } from "../../theme/colors"
 const Form = styled(ReactHeight)`
     box-sizing: border-box;
     position: relative;
-    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     height: ${(props) => getHeight(props)};
     width: 80%;
+    max-width: 609px;
     padding: 30px 10px;
     transition: height 1s ease-in-out;
     background-color: rgba(55, 55, 55, .8);
@@ -20,15 +20,14 @@ const Form = styled(ReactHeight)`
 
 function getHeight(props) {
     const NORMAL_HEIGHT = "12.5em"
-    const EXPANDED_HEIGHT = props.weatherData.get("heightToCollapse") + props.weatherData.get("height")+"px"
-    console.log(props.weatherData.get("heightToCollapse"), props.weatherData.get("height"))
+    let EXPANDED_HEIGHT = props.weatherData.get("heightToCollapse") + props.weatherData.get("height") +"px"
     let { collapsed } = props.weatherData.toJS()
 
     if(collapsed) {
-        return NORMAL_HEIGHT || "500px"
+        return NORMAL_HEIGHT
     } else {
         console.log("Expanding height to:", EXPANDED_HEIGHT)
-        return EXPANDED_HEIGHT || "500px"
+        return EXPANDED_HEIGHT
     }
 }
 export default Form
