@@ -8,12 +8,14 @@ import {
     COLLAPSE_FORM,
     SET_FORM_COLLAPSE_AMOUNT,
     SET_FORM_HEIGHT,
+    SET_LOCATION,
 } from "./constants"
 
 let initialState = fromJS({
     collapsed: true,
     height: undefined,
     heightToCollapse: undefined,
+    location: undefined,
     isFetching: false,
     data: false,
     showData: false,
@@ -38,6 +40,8 @@ export default function weatherData(state = initialState, action) {
             return state.set("heightToCollapse", action.height)
         case SET_FORM_HEIGHT:
             return state.set("height", action.height)
+        case SET_LOCATION: 
+            return state.set("location", action.location)
         default:
             return state
     }

@@ -1,7 +1,9 @@
 import React from "react"
 import styled from "styled-components"
+import { Textfit } from "react-textfit"
 import WeatherIcon from "../../components/WeatherIcon"
 import { primary2, secondary, tertiary } from "../../theme/colors"
+
 const Wrapper = styled.div`
     display: flex;
     position: relative;
@@ -10,29 +12,26 @@ const Wrapper = styled.div`
     border-radius: 10px;
     margin-bottom: 1.5em;
     border: solid 2px ${primary2};
-
-    > * {
-        flex: 1 1 50%;
-    }
 `
-const Temperature = styled.div`
-    font-size: 10vw;
+const Temperature = styled(Textfit)`
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 40%;
+    margin-left: auto;
 `
-const Summary = styled.div`
+const Summary = styled(Textfit)`
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 3vw;
+    width: 50%;
 `
 
 
 export default (props) => {
     return (
         <Wrapper>
-            <Temperature>
+            <Temperature mode="single" max={150}>
                 {props.temperature}&deg;f
             </Temperature>
             <Summary>
