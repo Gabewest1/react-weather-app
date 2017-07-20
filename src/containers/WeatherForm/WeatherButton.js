@@ -90,7 +90,6 @@ const Span = styled.span`
     text-transform: uppercase;
     font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
     font-weight: 700;
-    font-size: 4vw;
     
     text-shadow: 0px 1px #fff, 0px -1px #262F33;
     
@@ -100,6 +99,15 @@ const Span = styled.span`
         text-shadow: 0px -1px #97A63A;
         cursor: pointer;
     }
+    
+    @media (max-width: 600px) {
+        font-size: 16px;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 12px;
+    }
+
 `
 
 export default (props) => {
