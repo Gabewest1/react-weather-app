@@ -2,12 +2,12 @@ import React from "react"
 import Wrapper from "./Wrapper"
 import WeatherIcon from "../WeatherIcon"
 
-
 export default (props) => {
-    let { icon, precipProbability, maxTemp, minTemp, summary } = props
+    let { day, icon, precipProbability, maxTemp, minTemp, summary } = props
 
     return (
         <Wrapper>
+            <h1>{day}</h1>
             <WeatherIcon icon={icon} />
             <h1 style={{textAlign: "center"}}>
                 <b>{maxTemp}&deg;f</b> 

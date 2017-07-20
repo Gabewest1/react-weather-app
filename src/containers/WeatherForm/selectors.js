@@ -9,3 +9,12 @@ export const selectSummary = (state) => state.currently.summary
 export const selectIcon = (state) => state.currently.icon
 export const selectWeeklyForecast = (state) => state.daily
 export const selectWeeklyForecastData = (state) => state.daily.data
+export const selectDayOfTheWeek = (index) => {
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
+    let today = new Date().getDay()
+    let dayOfTheWeek = (today + index) % days.length
+
+    return index === 0 ? "Today" :
+           index === 1 ? "Tomorrow" :
+           days[dayOfTheWeek]
+}
