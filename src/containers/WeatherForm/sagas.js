@@ -23,26 +23,26 @@ export function* watchFormHeightAnimationStart() {
 }
 
 export function* startFormHeightAnimation(action) {
-    const state = yield select()
-    const collapsed = state.weatherData.get("collapsed")
-    const hasCollapseAmountBeenSet = state.weatherData.get("heightToCollapse")
-
+    let state = yield select()
+    let collapsed = state.weatherData.get("collapsed")
+    
     if(collapsed) {
         yield put({ type: SHOW_WEATHER_DATA, payload: false })       
+        yield delay(1000)    //Wait for previous LOC to update the view
 
-        if(!hasCollapseAmountBeenSet) {
-            console.log(hasCollapseAmountBeenSet)
-            yield take(SET_FORM_COLLAPSE_AMOUNT)
-        }
-        
+        //Get new height of currently hidden element to determine space needed
+        //to increase the container by
+        let main = document.getElementById("main")
+        let h1 =  state.weatherData.get("height")
+        let height = parseInt(window.getComputedStyle(main).getPropertyValue("height").replace("px", "")) 
+
+        yield put({ type: SET_FORM_COLLAPSE_AMOUNT, height })
         yield put({ type: COLLAPSE_FORM, payload: false })
 
-        
     } else {
         yield put({ type: COLLAPSE_FORM, payload: true })
         yield put({ type: SHOW_WEATHER_DATA, payload: false })
     }
-
 
 }
 export function* endFormHeightAnimation(action) {
@@ -59,6 +59,7 @@ export function* endFormHeightAnimation(action) {
         console.log("Form has reopened!!! :DDDDDDDD")
         yield put({ type: SHOW_WEATHER_DATA, payload: true })
     }
+
 }
 export function* getCurrentLocation() {
     try {
