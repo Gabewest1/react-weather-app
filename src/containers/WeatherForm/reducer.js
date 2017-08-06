@@ -21,7 +21,7 @@ let initialState = fromJS({
     data: false,
     showData: false,
     error: false,
-    celciusMode: true
+    celciusMode: false
 })
 
 export default function weatherData(state = initialState, action) {
