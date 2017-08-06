@@ -30,19 +30,20 @@ const Location = styled.div`
 
 `
 
-export default (props) => {
+export default ({ temperature, tempSymbol, icon , summary }) => {
+    console.log("PROPS INSIDE:", tempSymbol, temperature)
     return (
         <div>
             <Location>
-                <b>{props.location}</b>                 
+                <b>{ location }</b>                 
             </Location>
             <Wrapper>
                 <Temperature mode="single" max={150}>
-                    {props.temperature}&deg;f
+                    { temperature }&deg;{ tempSymbol }
                 </Temperature>
                 <Summary>
-                    <WeatherIcon icon={props.icon} />
-                    <em>{props.summary}</em>
+                    <WeatherIcon icon={ icon } />
+                    <em>{ summary }</em>
                 </Summary>
             </Wrapper>
         </div>
