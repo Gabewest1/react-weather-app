@@ -30,7 +30,7 @@ const Location = styled.div`
 
 `
 
-export default ({ temperature, tempSymbol, icon , summary }) => {
+export default ({ location, temperature, tempSymbol, icon , summary }) => {
     console.log("PROPS INSIDE:", tempSymbol, temperature)
     return (
         <div>
