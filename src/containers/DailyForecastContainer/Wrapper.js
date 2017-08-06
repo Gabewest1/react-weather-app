@@ -7,10 +7,9 @@ export default styled.div`
     align-items: center;
     background: ${secondary};
     border-radius: 10px;
+    border: solid thin ${primary2};
 
     > * {
-        border: solid thin ${primary2};
-        
         &:first-child {
             border-right: none;
             border-top-left-radius: 10px;
