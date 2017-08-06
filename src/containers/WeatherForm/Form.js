@@ -12,14 +12,14 @@ const Form = styled(ReactHeight)`
     height: ${(props) => getHeight(props)};
     width: 80%;
     max-width: 609px;
-    padding: 30px 10px;
+    padding: 10px;
     transition: height 1s ease-in-out;
     background-color: rgba(55, 55, 55, .8);
     border-radius: 10px;
 `
 
 function getHeight(props) {
-    const NORMAL_HEIGHT = "12.5em"
+    const NORMAL_HEIGHT = "120px"
     let EXPANDED_HEIGHT = props.weatherData.get("heightToCollapse") + props.weatherData.get("height") +"px"
     let { collapsed } = props.weatherData.toJS()
 
@@ -30,4 +30,5 @@ function getHeight(props) {
         return EXPANDED_HEIGHT
     }
 }
+
 export default Form
