@@ -14,22 +14,26 @@ import {
 } from "./constants"
 
 export function* watchFetchWeatherData() {
+    console.log("watchFetchWeatherData")
     yield takeEvery(FETCH_WEATHER_DATA, fetchLocationData)
 }
 export function* watchFetchCurrentLocationWeatherData() {
+    console.log("watchFetchCurrentLocationWeatherData")
     yield takeEvery(FETCH_CURRENT_LOCATION_WEATHER_DATA, fetchCurrentLocationWeatherData)
 }
 export function* watchFormHeightAnimationStart() {
+    console.log("watchFormHeightAnimationStart")
     yield takeEvery(ANIMATE_FORM_HEIGHT_START, startFormHeightAnimation)
 }
 
 export function* startFormHeightAnimation(action) {
+    console.log("startFormHeightAnimation")
     let state = yield select()
     let collapsed = state.weatherData.get("collapsed")
     
     if(collapsed) {
         yield put({ type: SHOW_WEATHER_DATA, payload: false })       
-        yield delay(1000)    //Wait for previous LOC to update the view
+        yield delay(2000)    //Wait for previous LOC to update the view
 
         //Get new height of currently hidden element to determine space needed
         //to increase the container by
@@ -46,6 +50,7 @@ export function* startFormHeightAnimation(action) {
 
 }
 export function* endFormHeightAnimation(action) {
+    console.log("endFormHeightAnimation")
     const state = yield select()
     const collapsed = state.weatherData.get("collapsed")
     const data = state.weatherData.get("data")
@@ -62,6 +67,7 @@ export function* endFormHeightAnimation(action) {
 
 }
 export function* getAddressOfCoordinates(lat, lng) {
+    console.log("getAddressOfCoordinates")
     try {
         const apiKey = "AIzaSyBlEuzRfwGV7IIIpUtefZWzHTg5Ip6UO3E"
         const googleGeocoderApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat+","+lng}&key=${apiKey}`
@@ -80,14 +86,19 @@ export function* getAddressOfCoordinates(lat, lng) {
 
 }
 export function* fetchCurrentLocationWeatherData() {
+    console.log("fetchCurrentLocationWeatherData")
     try {
         let position = yield new Promise(resolve => {
+            console.log("About to find your location!", navigator)
             navigator.geolocation.getCurrentPosition(position => {
+                console.log("Got the position:", position)
                 resolve(position)
             })
         })
         
         let {latitude, longitude} = position.coords
+
+        console.log("Here are the coordinates:", latitude, longitude)
         
         yield fetchWeatherData(latitude, longitude)
     } catch(e) {
@@ -95,6 +106,7 @@ export function* fetchCurrentLocationWeatherData() {
     }
 }
 export function* fetchLocationData(action) {
+    console.log("fetchLocationData")
     const { location } = action
     console.log("location:", location)
     const apiKey = "AIzaSyBlEuzRfwGV7IIIpUtefZWzHTg5Ip6UO3E"
@@ -112,6 +124,7 @@ export function* fetchLocationData(action) {
     }
 }
 export function* fetchWeatherData(lat, lng) {
+    console.log("fetchWeatherData")
     console.log("fetching weather data yooooo")
     try {
         //This url might need to change when i go into production
@@ -121,7 +134,7 @@ export function* fetchWeatherData(lat, lng) {
         let data = yield response.json()
         
         let address = yield getAddressOfCoordinates(lat, lng)
-        
+        console.log("HERE IS THE ADDRESS AGAIN:", address)
         yield put({ type: FETCH_WEATHER_DATA_SUCCESS, data })
         yield put({ type: SET_LOCATION, location: address })
         console.log("Waiting for form height animation")
