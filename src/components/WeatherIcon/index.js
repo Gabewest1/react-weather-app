@@ -6,10 +6,8 @@ const WeatherIcon = styled.img`
     width: 75%;
 `
 
-export default (props) => {
-    let { icon } = props
-    // let iconSrc = `/assets/images/${icon}.png`
-    let iconSrc = `/assets/images/clear-day.svg`
+export default ({ icon, tempSymbol }) => {
+    let iconSrc = `/assets/images/temp/${icon}.svg`
 
     return (
         <WeatherIcon src={iconSrc} alt={icon} />
