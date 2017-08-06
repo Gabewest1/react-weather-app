@@ -58,7 +58,7 @@ class WeatherForm extends React.Component {
                 { weatherData ? <Main {...this.props} /> : null }
                 <Wrapper>
                     <WeatherButton onClick={handleSubmit(this.handleSubmit.bind(this))}>
-                        {showWeatherData ? "New Location" : "Get Weather"}
+                        {weatherData ? "New Location" : "Check Weather"}
                     </WeatherButton>
                     <WeatherButton onClick={this.props.fetchCurrentLocationWeatherData}>My Location</WeatherButton>
                 </Wrapper>
@@ -70,7 +70,7 @@ class WeatherForm extends React.Component {
 function mapStateToProps(state) {
     let data = state.weatherData.get("data")
     let showData = state.weatherData.get("showData")
-    let temperature = data ? weatherDataSelectors.selectTemperature(data) : false
+    let temperature = data ? weatherDataSelectors.selectTemperature(state) : false
     let timezone = data ? weatherDataSelectors.selectTimezone(data) : false
     let humidity = data ? weatherDataSelectors.selectHumidity(data) : false
     let windSpeed = data ? weatherDataSelectors.selectWindSpeed(data) : false
@@ -90,6 +90,8 @@ function mapStateToProps(state) {
         summary,
         icon,
         location,
+        celciusMode: weatherDataSelectors.selectCelciusMode(state),
+        tempSymbol: weatherDataSelectors.selectTempSymbol(state)
     }
 }
 
