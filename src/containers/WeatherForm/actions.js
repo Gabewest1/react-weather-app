@@ -10,6 +10,7 @@ import {
     FETCH_CURRENT_LOCATION_WEATHER_DATA,
     SET_FORM_COLLAPSE_AMOUNT,
     SET_FORM_HEIGHT,
+    SET_CELCIUS_MODE
 } from "./constants"
 
 export function fetchWeatherData(location) {
@@ -38,3 +39,4 @@ export function endFormHeightAnimation() {
 
 export const setHeightToCollapse = (height) => ({ type: SET_FORM_COLLAPSE_AMOUNT, height })
 export const setFormHeight = (height) => ({ type: SET_FORM_HEIGHT, height })
+export const setCelciusMode = (mode) => ({ type: SET_CELCIUS_MODE, payload: mode })

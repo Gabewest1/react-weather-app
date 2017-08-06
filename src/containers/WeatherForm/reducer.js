@@ -9,6 +9,7 @@ import {
     SET_FORM_COLLAPSE_AMOUNT,
     SET_FORM_HEIGHT,
     SET_LOCATION,
+    SET_CELCIUS_MODE
 } from "./constants"
 
 let initialState = fromJS({
@@ -20,6 +21,7 @@ let initialState = fromJS({
     data: false,
     showData: false,
     error: false,
+    celciusMode: true
 })
 
 export default function weatherData(state = initialState, action) {
@@ -42,6 +44,8 @@ export default function weatherData(state = initialState, action) {
             return state.set("height", action.height)
         case SET_LOCATION: 
             return state.set("location", action.location)
+        case SET_CELCIUS_MODE:
+            return state.set("celciusMode", action.payload)
         default:
             return state
     }
