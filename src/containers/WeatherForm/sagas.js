@@ -89,11 +89,13 @@ export function* fetchCurrentLocationWeatherData() {
     console.log("fetchCurrentLocationWeatherData")
     try {
         let position = yield new Promise(resolve => {
-            console.log("About to find your location!", navigator)
+            console.log("About to find your location!", navigator.geolocation.getCurrentPosition)
             navigator.geolocation.getCurrentPosition(position => {
                 console.log("Got the position:", position)
                 resolve(position)
-            })
+            }, (err) => console.log("GEOCODE ERROR:", err),
+                {timeout: 10000, enableHighAccuracy: true}
+            )
         })
         
         let {latitude, longitude} = position.coords
@@ -106,9 +108,7 @@ export function* fetchCurrentLocationWeatherData() {
     }
 }
 export function* fetchLocationData(action) {
-    console.log("fetchLocationData")
     const { location } = action
-    console.log("location:", location)
     const apiKey = "AIzaSyBlEuzRfwGV7IIIpUtefZWzHTg5Ip6UO3E"
     const googleGeocoderApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${apiKey}`
 
@@ -124,8 +124,6 @@ export function* fetchLocationData(action) {
     }
 }
 export function* fetchWeatherData(lat, lng) {
-    console.log("fetchWeatherData")
-    console.log("fetching weather data yooooo")
     try {
         //This url might need to change when i go into production
         const weatherApiUrl = `c373bad511a5643591596847902ff1b2/${lat+","+lng}`        

@@ -26,7 +26,6 @@ function getHeight(props) {
     if(collapsed) {
         return NORMAL_HEIGHT
     } else {
-        console.log("Expanding height to:", EXPANDED_HEIGHT)
         return EXPANDED_HEIGHT
     }
 }

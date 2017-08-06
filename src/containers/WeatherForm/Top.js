@@ -31,7 +31,6 @@ const Location = styled.div`
 `
 
 export default ({ location, temperature, tempSymbol, icon , summary }) => {
-    console.log("PROPS INSIDE:", tempSymbol, temperature)
     return (
         <div>
             <Location>

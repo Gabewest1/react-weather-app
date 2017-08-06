@@ -25,8 +25,6 @@ class DailyForecastContainer extends React.Component {
                         apparentTemperatureMin = convertFahrenheitToCelcius(apparentTemperatureMin)
                     }
 
-                    console.log("MAX, MIN:", apparentTemperatureMax, apparentTemperatureMin)
-
                     let day = weatherDataSelectors.selectDayOfTheWeek(key) 
                     let dailyForecastProps = { day, summary, tempSymbol, icon, precipProbability, rain, maxTemp:apparentTemperatureMax, minTemp:apparentTemperatureMin }
 
