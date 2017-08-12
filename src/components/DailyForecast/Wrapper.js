@@ -7,8 +7,4 @@ export default styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
-        
-    h1 {
-        font-size: 1.5vw;
-    }
 `
