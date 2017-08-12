@@ -15,6 +15,7 @@ const Wrapper = styled.div`
 `
 const Temperature = styled(Textfit)`
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 40%;
@@ -29,6 +30,13 @@ const Summary = styled.div`
 const Location = styled.div`
 
 `
+const CelciusModeButton = styled.button`
+    outline: none;
+    border: solid thin white;
+    padding: 10px 20px;
+    background: transparent;
+    color: white;
+`
 
 export default ({ location, temperature, tempSymbol, icon , summary }) => {
     return (
@@ -39,6 +47,7 @@ export default ({ location, temperature, tempSymbol, icon , summary }) => {
             <Wrapper>
                 <Temperature mode="single" max={150}>
                     { temperature }&deg;{ tempSymbol }
+                    <CelciusModeButton>Celcius</CelciusModeButton>
                 </Temperature>
                 <Summary>
                     <WeatherIcon icon={ icon } />
