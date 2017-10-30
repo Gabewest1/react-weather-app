@@ -1,17 +1,24 @@
 import React from "react"
 import styled from "styled-components"
-import Wrapper from "./Wrapper"
 import WeatherIcon from "../WeatherIcon"
+import { primary, tertiary } from "../../theme/colors"
 
-let Day = styled.h1`
-    font-size: 22px;
+const Day = styled.h1`
+    font-size: 18px;
 `
-let Temperatures = styled.h1`
+const Temperatures = styled.h1`
     font-size: 16px;
 `
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`
+
 export default (props) => {
     let { day, icon, precipProbability, maxTemp, minTemp, summary, tempSymbol } = props
-
+    
     return (
         <Wrapper>
             <Day>{day}</Day>
