@@ -8,8 +8,6 @@ import Wrapper from "./Wrapper"
 import * as weatherDataSelectors from "../WeatherForm/selectors"
 import convertFahrenheitToCelcius from "../../lib/convertFahrenheitToCelcius"
 
-
-
 class DailyForecastContainer extends React.Component {
     createDailyForecasts() {
         let { celciusMode, weeklyForecastData, tempSymbol } = this.props
