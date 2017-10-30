@@ -3,55 +3,63 @@ import styled from "styled-components"
 import { Textfit } from "react-textfit"
 import WeatherIcon from "../../components/WeatherIcon"
 import { primary2, secondary, tertiary } from "../../theme/colors"
+import SwitchButton from "react-switch-button"
 
-const Wrapper = styled.div`
+const Settings = styled.div`
     display: flex;
-    position: relative;
-    justify-content: space-around;
-    background-color: ${secondary};
-    border-radius: 10px;
-    margin-bottom: 1.5em;
-    border: solid 2px ${primary2};
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em 0;
 `
-const Temperature = styled(Textfit)`
+const Location = styled.div`
+    font-weight: bold;
+`
+const Wrapper = styled.div`
+    background-color: ${secondary};
+    border: solid 2px ${primary2};
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    padding: 1em;
+    margin-bottom: 1.5em;
+`
+const Temperature = styled.h1`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 40%;
-    margin-left: auto;
+    font-size: 78px;
+    margin: 0;
 `
 const Summary = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
 `
-const Location = styled.div`
-
+const Description = styled.em`
+    font-size: 24px;
+    margin-top: .78em;
 `
-const CelciusModeButton = styled.button`
-    outline: none;
-    border: solid thin white;
-    padding: 10px 20px;
-    background: transparent;
-    color: white;
-`
-
-export default ({ location, temperature, tempSymbol, icon , summary }) => {
+export default ({ celciusMode, location, temperature, tempSymbol, icon , setCelciusMode, summary }) => {
     return (
         <div>
-            <Location>
-                <b>{ location }</b>                 
-            </Location>
+            <Settings>
+                <Location>{ location }</Location>
+                <SwitchButton
+                    name="switch-8" 
+                    label="&deg;f"
+                    labelRight="&deg;c"
+                    defaultChecked={ celciusMode }
+                    onChange={ () => setCelciusMode(!celciusMode) } />
+            </Settings>
             <Wrapper>
                 <Temperature mode="single" max={150}>
                     { temperature }&deg;{ tempSymbol }
-                    <CelciusModeButton>Celcius</CelciusModeButton>
                 </Temperature>
                 <Summary>
                     <WeatherIcon icon={ icon } />
-                    <em>{ summary }</em>
+                    <Description>{ summary }</Description>
                 </Summary>
             </Wrapper>
         </div>

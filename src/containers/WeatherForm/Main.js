@@ -12,11 +12,22 @@ const Main = styled.div`
 `
 
 export default (props) => {
-    let { tempSymbol, temperature, summary, icon, setHeightToCollapse, showData, location } = props
+    let { 
+        celciusMode, tempSymbol, temperature, summary,
+        icon, setHeightToCollapse, showData, location,
+        setCelciusMode
+    } = props
 
     return (
         <Main id="main" showData={showData} >
-            <Top temperature={temperature} summary={summary} icon={icon} location={location} tempSymbol={tempSymbol} />
+            <Top
+                temperature={ temperature }
+                summary={ summary }
+                icon={ icon }
+                location={ location }
+                tempSymbol={ tempSymbol }
+                celciusMode={ celciusMode }
+                setCelciusMode={ setCelciusMode }/>
             <DailyForecastContainer /> 
         </Main>
     )
