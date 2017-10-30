@@ -2,8 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 const WeatherIcon = styled.img`
-    max-width: 75%
-    width: 75%;
+    max-width: 100%
 `
 
 export default ({ icon, tempSymbol }) => {
