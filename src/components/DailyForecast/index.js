@@ -18,11 +18,14 @@ const Wrapper = styled.div`
 
 export default (props) => {
     let { day, icon, precipProbability, maxTemp, minTemp, summary, tempSymbol } = props
-    
+    const style = {}
+
+    style.maxWidth = icon === "wind" ? "120px" : "100%"
+
     return (
         <Wrapper>
             <Day>{day}</Day>
-            <WeatherIcon icon={icon} />
+            <WeatherIcon icon={icon} style={ style } />
             <Temperatures style={{textAlign: "center"}}>
                 <b>{maxTemp}&deg;{tempSymbol}</b> 
                 <div style={{width: "100%", height: "1px", background: "white"}}/>
