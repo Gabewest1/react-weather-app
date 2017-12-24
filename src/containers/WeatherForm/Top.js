@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Textfit } from "react-textfit"
 import WeatherIcon from "../../components/WeatherIcon"
 import { primary2, secondary, tertiary } from "../../theme/colors"
-import SwitchButton from "react-switch-button"
+import SwitchButton from "react-switch"
 
 const Settings = styled.div`
     display: flex;
@@ -41,17 +41,28 @@ const Description = styled.em`
     font-size: 24px;
     margin-top: .78em;
 `
+const TemperatureSetting = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 120px;
+    align-self: flex-start;
+`
 export default ({ celciusMode, location, temperature, tempSymbol, icon , setCelciusMode, summary }) => {
     return (
         <div>
             <Settings>
                 <Location>{ location }</Location>
-                <SwitchButton
-                    name="switch-8" 
-                    label="&deg;f"
-                    labelRight="&deg;c"
-                    defaultChecked={ celciusMode }
-                    onChange={ () => setCelciusMode(!celciusMode) } />
+                <TemperatureSetting>
+                    <span>&deg;f</span>
+                    <SwitchButton
+                        checked={ celciusMode }
+                        uncheckedIcon={ false }
+                        checkedIcon= { false }
+                        onColor="rgb(128, 128, 128)"
+                        onChange={ () => setCelciusMode(!celciusMode) } />
+                    <span>&deg;c</span>
+                </TemperatureSetting>
             </Settings>
             <Wrapper>
                 <Temperature mode="single" max={150}>

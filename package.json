@@ -5,7 +5,7 @@
   "dependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-switch-button": "^2.2.2"
+    "react-switch": "^2.2.0",
   },
   "devDependencies": {
     "all-the-cities": "^2.0.0",
