@@ -5,7 +5,6 @@ import createHistory from "history/createBrowserHistory"
 import { Provider } from "react-redux"
 import { ConnectedRouter } from "react-router-redux"
 import createStoreWithHistory from "./store"
-import 'react-switch-button/dist/react-switch-button.css';
 import './index.css'
 
 const history = createHistory()
