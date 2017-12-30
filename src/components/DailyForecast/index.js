@@ -4,16 +4,25 @@ import WeatherIcon from "../WeatherIcon"
 import { primary, tertiary } from "../../theme/colors"
 
 const Day = styled.h1`
-    font-size: 18px;
+    
 `
-const Temperatures = styled.h1`
-    font-size: 16px;
+const Temperatures = styled.h2`
+    
 `
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 120px;
+    width: 50px;
+    font-size: .4em;
+
+    @media (min-width: 768px) {
+        font-size: .6em;
+        height: 180px;
+        width: 75px;
+    }
 `
 
 export default (props) => {
