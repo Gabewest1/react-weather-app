@@ -126,7 +126,7 @@ export function* fetchLocationData(action) {
 export function* fetchWeatherData(lat, lng) {
     try {
         //This url might need to change when i go into production
-        const weatherApiUrl = `c373bad511a5643591596847902ff1b2/${lat+","+lng}`        
+        const weatherApiUrl = `https://api.darksky.net/forecast/c373bad511a5643591596847902ff1b2/${lat+","+lng}`        
 
         let response = yield call(fetch, weatherApiUrl)
         let data = yield response.json()
