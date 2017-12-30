@@ -26,7 +26,7 @@ export const selectDayOfTheWeek = (index) => {
     let dayOfTheWeek = (today + index) % days.length
 
     return index === 0 ? "Today" :
-           index === 1 ? "Tomorrow" :
+           index === 1 ? "Tmrw" :
            days[dayOfTheWeek]
 }
 export const selectTemperature = createSelector(
