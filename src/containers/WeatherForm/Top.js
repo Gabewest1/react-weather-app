@@ -13,6 +13,11 @@ const Settings = styled.div`
 `
 const Location = styled.div`
     font-weight: bold;
+    font-size: 12px;
+
+    @media (min-width: 768px) {
+        font-size: 16px;
+    }
 `
 const Wrapper = styled.div`
     background-color: ${secondary};
@@ -29,17 +34,21 @@ const Temperature = styled.h1`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 78px;
+    font-size: 7vmin;
     margin: 0;
 `
 const Summary = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 `
 const Description = styled.em`
-    font-size: 24px;
-    margin-top: .78em;
+    font-size: 16px;
+
+    @media (min-width: 768px) {
+        font-size: 24px;
+    }
 `
 const TemperatureSetting = styled.div`
     display: flex;
@@ -65,7 +74,7 @@ export default ({ celciusMode, location, temperature, tempSymbol, icon , setCelc
                 </TemperatureSetting>
             </Settings>
             <Wrapper>
-                <Temperature mode="single" max={150}>
+                <Temperature>
                     { temperature }&deg;{ tempSymbol }
                 </Temperature>
                 <Summary>
