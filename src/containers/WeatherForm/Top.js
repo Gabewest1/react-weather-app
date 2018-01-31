@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Textfit } from "react-textfit"
 import WeatherIcon from "../../components/WeatherIcon"
-import { primary2, secondary, tertiary } from "../../theme/colors"
+import { primary, secondary, ICON_DAY_COLOR } from "../../theme/colors"
 import SwitchButton from "react-switch"
 
 const Settings = styled.div`
@@ -21,7 +21,6 @@ const Location = styled.div`
 `
 const Wrapper = styled.div`
     background-color: ${secondary};
-    border: solid 2px ${primary2};
     border-radius: 10px;
     display: flex;
     justify-content: space-around;
@@ -56,7 +55,16 @@ const TemperatureSetting = styled.div`
     justify-content: space-between;
     width: 120px;
     align-self: flex-start;
+
+    .react-switch-bg {
+        background: ${ primary } !important;
+    }
+
+    span {
+        font-size: 22px;
+    }
 `
+
 export default ({ celciusMode, location, temperature, tempSymbol, icon , setCelciusMode, summary }) => {
     return (
         <div>
@@ -68,7 +76,6 @@ export default ({ celciusMode, location, temperature, tempSymbol, icon , setCelc
                         checked={ celciusMode }
                         uncheckedIcon={ false }
                         checkedIcon= { false }
-                        onColor="rgb(128, 128, 128)"
                         onChange={ () => setCelciusMode(!celciusMode) } />
                     <span>&deg;c</span>
                 </TemperatureSetting>

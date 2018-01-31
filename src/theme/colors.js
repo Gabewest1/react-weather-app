@@ -1,11 +1,7 @@
-// export const primary = "#2B3A42"
-// export const primary2 = "#3F5765"
-// export const secondary = "#BDD4DE"
-// export const tertiary = "#FF530D"
-// export const white = "#EFEFEF"
-
-export const primary = "black"
-export const primary2 = "white"
-export const secondary = "#35323280"
-export const tertiary = "gray"
-export const white = "#EFEFEF"
+export const primary = "#2d2d2d"
+export const primary2 = "#ffffff80"
+export const secondary = "#ffffff80"
+export const DAY_TIME_COLOR = primary2
+export const NIGHT_TIME_COLOR = ""
+export const ICON_NIGHT_COLOR = "#ffb91d"
+export const ICON_DAY_COLOR = "#ffb91d"

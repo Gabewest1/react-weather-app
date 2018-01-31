@@ -1,9 +1,16 @@
 import styled from "styled-components"
 import { ReactHeight } from "react-height"
-import { primary } from "../../theme/colors"
+import {
+    primary,
+    NIGHT_TIME_COLOR,
+    DAY_TIME_COLOR,
+    ICON_DAY_COLOR,
+    ICON_NIGHT_COLOR
+} from "../../theme/colors"
 
 const Form = styled(ReactHeight)`
     box-sizing: border-box;
+    color: ${ primary };
     position: relative;
     display: flex;
     flex-direction: column;
@@ -14,8 +21,12 @@ const Form = styled(ReactHeight)`
     max-width: 609px;
     padding: 10px;
     transition: height 1s ease-in-out;
-    background-color: ${({ isNightTime }) => isNightTime ? "#35323280" : "lightblue"};
+    background-color: ${({ isNightTime }) => isNightTime ? NIGHT_TIME_COLOR : DAY_TIME_COLOR};
     border-radius: 10px;
+
+    svg {
+        fill:${({ isNightTime }) => isNightTime ? ICON_NIGHT_COLOR : ICON_DAY_COLOR};
+    }
 `
 
 function getHeight(props) {

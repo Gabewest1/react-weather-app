@@ -8,6 +8,7 @@ import DailyForecastContainer from "../DailyForecastContainer"
 const Main = styled.div`
     opacity: ${({showData}) => showData ? 1 : 0};
     position: ${({showData}) => showData ? "relative" : "absolute"};
+    margin-bottom: 22px;
     width: 100%;
 `
 

@@ -11,7 +11,7 @@ const Button = styled.button`
     white-space: nowrap;    
     border-radius: 10px;
     box-shadow: 
-        0px 5px 3px 3px rgba(50, 50, 50, 1);
+        0px 3px 3px 3px rgba(50, 50, 50, 1);
         
     
     transition: box-shadow .1s ease-in-out;
@@ -88,14 +88,13 @@ const Span = styled.span`
     
     color: ${primary};
     text-transform: uppercase;
-    font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
     font-weight: 700;
     
     text-shadow: 0px 1px #fff, 0px -1px #262F33;
     
 
     &:hover {
-        // color: ${primary2};
+        color: ${primary2};
         text-shadow: 0px -1px #97A63A;
         cursor: pointer;
     }

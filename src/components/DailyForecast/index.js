@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import WeatherIcon from "../WeatherIcon"
-import { primary, tertiary } from "../../theme/colors"
+import { primary, ICON_DAY_COLOR } from "../../theme/colors"
 
 const Day = styled.h1`
     
@@ -37,7 +37,7 @@ export default (props) => {
             <WeatherIcon icon={icon} style={ style } />
             <Temperatures style={{textAlign: "center"}}>
                 <b>{maxTemp}&deg;{tempSymbol}</b> 
-                <div style={{width: "100%", height: "1px", background: "white"}}/>
+                <div style={{width: "100%", height: "1px", background: primary}}/>
                 {minTemp}&deg;{tempSymbol}
             </Temperatures>
         </Wrapper>

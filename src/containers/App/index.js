@@ -19,7 +19,7 @@ class App extends React.Component{
 
         this.props.dispatch({ type: "IS_NIGHTTIME", payload: isNightTime })
 
-        return backgroundComponent
+        return NightSky
     }
     render() {
         let BackgroundComponent = this.getBackground()
