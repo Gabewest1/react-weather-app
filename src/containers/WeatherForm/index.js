@@ -55,7 +55,12 @@ class WeatherForm extends React.Component {
                        type="text" 
                        placeholder="Enter an address..."
                        loading={isFetchingWeatherData}  />
-                { weatherData ? <Main {...this.props} /> : null }
+
+                {  weatherData 
+                    ? <Main {...this.props} /> 
+                    : null 
+                }
+
                 <Wrapper>
                     <WeatherButton onClick={handleSubmit(this.handleSubmit.bind(this))}>
                         {weatherData ? "New Location" : "Check Weather"}
@@ -78,6 +83,7 @@ function mapStateToProps(state) {
     let summary = data ? weatherDataSelectors.selectSummary(data) : false
     let icon = data ? weatherDataSelectors.selectIcon(data) : false
     let location = state.weatherData.get("location")
+    let isNightTime = state.isNightTime.isNightTime
 
     return {
         weatherData: state.weatherData,
@@ -89,6 +95,7 @@ function mapStateToProps(state) {
         rain,
         summary,
         icon,
+        isNightTime,
         location,
         celciusMode: weatherDataSelectors.selectCelciusMode(state),
         tempSymbol: weatherDataSelectors.selectTempSymbol(state)

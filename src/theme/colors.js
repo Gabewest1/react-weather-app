@@ -6,6 +6,6 @@
 
 export const primary = "black"
 export const primary2 = "white"
-export const secondary = "gray"
+export const secondary = "#35323280"
 export const tertiary = "gray"
 export const white = "#EFEFEF"

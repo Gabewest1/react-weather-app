@@ -1,4 +1,5 @@
 import React from "react"
+import { connect } from "react-redux"
 import { Route } from "react-router-dom"
 
 import Container from "./Container"
@@ -16,6 +17,8 @@ class App extends React.Component{
         let isNightTime = currentTime >= 18 || currentTime <= 5
         let backgroundComponent = isNightTime ? NightSky : DaySky
 
+        this.props.dispatch({ type: "IS_NIGHTTIME", payload: isNightTime })
+
         return backgroundComponent
     }
     render() {
@@ -30,4 +33,4 @@ class App extends React.Component{
     }
 }
 
-export default App
+export default connect()(App)

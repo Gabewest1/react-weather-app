@@ -95,7 +95,7 @@ const Span = styled.span`
     
 
     &:hover {
-        color: ${primary2};
+        // color: ${primary2};
         text-shadow: 0px -1px #97A63A;
         cursor: pointer;
     }

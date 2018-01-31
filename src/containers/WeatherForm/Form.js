@@ -14,7 +14,7 @@ const Form = styled(ReactHeight)`
     max-width: 609px;
     padding: 10px;
     transition: height 1s ease-in-out;
-    background-color: rgba(55, 55, 55, .8);
+    background-color: ${({ isNightTime }) => isNightTime ? "#35323280" : "lightblue"};
     border-radius: 10px;
 `
 
