@@ -15,11 +15,11 @@ class App extends React.Component{
         //else render a sky with clouds
         let currentTime = (new Date()).getHours()
         let isNightTime = currentTime >= 18 || currentTime <= 5
-        let backgroundComponent = isNightTime ? NightSky : DaySky
+        let BackgroundComponent = isNightTime ? NightSky : DaySky
 
-        this.props.dispatch({ type: "IS_NIGHTTIME", payload:! isNightTime })
+        this.props.dispatch({ type: "IS_NIGHTTIME", payload: isNightTime })
 
-        return DaySky
+        return BackgroundComponent
     }
     render() {
         let BackgroundComponent = this.getBackground()
