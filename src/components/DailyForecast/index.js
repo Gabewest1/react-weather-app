@@ -7,7 +7,7 @@ const Day = styled.h1`
     
 `
 const Temperatures = styled.h2`
-    
+    font-weight: 100;    
 `
 const Wrapper = styled.div`
     display: flex;
@@ -36,7 +36,7 @@ export default (props) => {
             <Day>{day}</Day>
             <WeatherIcon icon={icon} style={ style } />
             <Temperatures style={{textAlign: "center"}}>
-                <b>{maxTemp}&deg;{tempSymbol}</b> 
+                {maxTemp}&deg;{tempSymbol}
                 <div style={{width: "100%", height: "1px", background: primary}}/>
                 {minTemp}&deg;{tempSymbol}
             </Temperatures>

@@ -33,8 +33,13 @@ const Temperature = styled.h1`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 7vmin;
+    font-size: 36px;
+    font-weight: 100;
     margin: 0;
+
+    @media (min-width: 768px) {
+        font-size: 76px;
+    }
 `
 const Summary = styled.div`
     display: flex;

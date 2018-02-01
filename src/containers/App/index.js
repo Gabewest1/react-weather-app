@@ -17,9 +17,9 @@ class App extends React.Component{
         let isNightTime = currentTime >= 18 || currentTime <= 5
         let backgroundComponent = isNightTime ? NightSky : DaySky
 
-        this.props.dispatch({ type: "IS_NIGHTTIME", payload: isNightTime })
+        this.props.dispatch({ type: "IS_NIGHTTIME", payload:! isNightTime })
 
-        return NightSky
+        return DaySky
     }
     render() {
         let BackgroundComponent = this.getBackground()
