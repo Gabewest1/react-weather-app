@@ -15,6 +15,7 @@ const Button = styled.button`
         
     
     transition: box-shadow .1s ease-in-out;
+    width: 100%;
 
     &:active {
         -webkit-box-shadow: 

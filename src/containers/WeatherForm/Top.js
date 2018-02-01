@@ -44,6 +44,7 @@ const Summary = styled.div`
 `
 const Description = styled.em`
     font-size: 16px;
+    margin-top: 10px;
 
     @media (min-width: 768px) {
         font-size: 24px;
