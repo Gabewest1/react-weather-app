@@ -1,8 +1,7 @@
 import React from "react"
 
 export default (props) => (
-    <svg { ...props } version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-	 width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100">
+    <svg { ...props } version="1.1" id="Layer_1" width="100px" height="100px" viewBox="0 0 100 100">
 <g>
 	<path d="M38.808,28.393c0.648,0,1.175-0.526,1.175-1.175v-4.895c0-0.649-0.526-1.175-1.175-1.175s-1.175,0.526-1.175,1.175v4.895
 		C37.633,27.867,38.159,28.393,38.808,28.393z"/>
