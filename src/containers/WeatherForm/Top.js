@@ -87,7 +87,7 @@ export default ({ celciusMode, location, temperature, tempSymbol, icon , setCelc
                 </TemperatureSetting>
             </Settings>
             <Wrapper>
-                <Temperature>
+                <Temperature data-test="temperature">
                     { temperature }&deg;{ tempSymbol }
                 </Temperature>
                 <Summary>
