@@ -15,6 +15,14 @@ import Wrapper from "./Wrapper"
 //import actions and selectors
 import * as actions from "./actions"
 import * as weatherDataSelectors from "./selectors"
+
+import {
+    NIGHT_TIME_COLOR,
+    DAY_TIME_COLOR,
+    ICON_DAY_COLOR,
+    ICON_NIGHT_COLOR
+} from "../../theme/colors"
+
 class WeatherForm extends React.Component {
     handleSubmit(values) {
         console.log("handle submit called")
@@ -40,32 +48,39 @@ class WeatherForm extends React.Component {
         }
     }
     render() {
-        let { handleSubmit, showWeatherData } = this.props
-        let isFetchingWeatherData = this.props.weatherData.get("isFetching")
-        let weatherData = this.props.weatherData.get("data")
+        let { isNightTime, handleSubmit, showWeatherData, weatherData } = this.props
+        let isFetchingWeatherData = weatherData.get("isFetching")
+        let hasWeatherData = weatherData.get("data")
 
         return (
-            <Form {...this.props}
-                  id="weatherForm"  
-                  onTransitionEnd={this.handleHeightAnimation.bind(this)}
-                  onHeightReady={(height) => this.setFormHeight(height)}
+            <Form
+                id="weatherForm"
+                data-test="weatherForm"
+                weatherData={weatherData}
+                backgroundColor={isNightTime ? NIGHT_TIME_COLOR : DAY_TIME_COLOR}
+                fill={isNightTime ? ICON_NIGHT_COLOR : ICON_DAY_COLOR}
+                onTransitionEnd={this.handleHeightAnimation.bind(this)}
+                onHeightReady={(height) => this.setFormHeight(height)}
             >
-                <Field name="location" 
-                       component={Input}
-                       type="text" 
-                       placeholder="Enter an address..."
-                       loading={isFetchingWeatherData}  />
+                <Field
+                    name="location" 
+                    component={Input}
+                    type="text" 
+                    placeholder="Enter an address..."
+                    loading={isFetchingWeatherData}
+                    data-test="weatherQuery"
+                />
 
-                {  weatherData 
+                {hasWeatherData
                     ? <Main {...this.props} /> 
                     : null 
                 }
 
                 <Wrapper>
-                    <WeatherButton onClick={handleSubmit(this.handleSubmit.bind(this))}>
-                        {weatherData ? "New Location" : "Check Weather"}
+                    <WeatherButton data-test="weatherBtn" onClick={handleSubmit(this.handleSubmit.bind(this))}>
+                        {hasWeatherData ? "New Location" : "Check Weather"}
                     </WeatherButton>
-                    <WeatherButton onClick={this.props.fetchCurrentLocationWeatherData}>My Location</WeatherButton>
+                    <WeatherButton data-test="currentLocationWeatherBtn" onClick={this.props.fetchCurrentLocationWeatherData}>My Location</WeatherButton>
                 </Wrapper>
             </Form>
         )

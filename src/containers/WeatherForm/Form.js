@@ -1,12 +1,15 @@
+import React from "react"
 import styled from "styled-components"
 import { ReactHeight } from "react-height"
 import {
     primary,
-    NIGHT_TIME_COLOR,
-    DAY_TIME_COLOR,
-    ICON_DAY_COLOR,
-    ICON_NIGHT_COLOR
 } from "../../theme/colors"
+
+const styles = {
+    height: undefined,
+    backgroundColor: undefined,
+    fill: undefined
+}
 
 const Form = styled(ReactHeight)`
     box-sizing: border-box;
@@ -16,16 +19,16 @@ const Form = styled(ReactHeight)`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: ${(props) => getHeight(props)};
+    height: ${() => styles.height};
     width: 80%;
     max-width: 609px;
     padding: 10px;
     transition: height 1s ease-in-out;
-    background-color: ${({ isNightTime }) => isNightTime ? NIGHT_TIME_COLOR : DAY_TIME_COLOR};
+    background-color: ${() => styles.backgroundColor};
     border-radius: 10px;
 
     svg {
-        fill:${({ isNightTime }) => isNightTime ? ICON_NIGHT_COLOR : ICON_DAY_COLOR};
+        fill:${() => styles.fill};
     }
 `
 
@@ -41,4 +44,13 @@ function getHeight(props) {
     }
 }
 
-export default Form
+export default props => {
+    const { fill, backgroundColor, weatherData, ...rest } = props
+    styles.fill = fill
+    styles.height = getHeight(props)
+    styles.backgroundColor = backgroundColor
+
+    return (
+        <Form {...rest} />
+    )
+}
