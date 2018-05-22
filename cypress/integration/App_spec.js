@@ -11,6 +11,21 @@ describe("Weather App", () => {
         it("should display", () => {
             const form = getElement("weatherForm")
         })
+
+        it("should fetch weather data about Hong Kong", () => { 
+            cy.server()
+            cy.route("sockjs-node/*").as("getWeather")
+
+            getElement("weatherQuery").type("Hong Kong")
+
+            getElement("weatherBtn").click()
+            
+            cy.wait("@getWeather")
+            
+            getElement("temperature").should(el => {
+                expect(el[0].textContent).to.not.equal("")
+            })
+        })
     })
 
     describe("Query Weather Button", () => {
