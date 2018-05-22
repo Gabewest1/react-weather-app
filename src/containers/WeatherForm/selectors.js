@@ -3,7 +3,6 @@ import convertFahrenheitToCelcius from "../../lib/convertFahrenheitToCelcius"
 
 export const selectTemperatureData = (state) => {
     let thereIsData = state.weatherData.get("data")
-    console.log("DATA:", thereIsData)
     
     if (thereIsData) {
         return thereIsData.currently.temperature
