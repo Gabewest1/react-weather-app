@@ -7,15 +7,36 @@ describe("Weather App", () => {
         cy.visit("http://localhost:3000")
     })
 
-    it("should display a form to enter a location to query weather data.", () => {
-        const form = getElement("weatherForm")
+    describe("Weather Form", () => {
+        it("should display", () => {
+            const form = getElement("weatherForm")
+        })
     })
 
-    it("should display a button to fetch weather data related to the form", () => {
-        const weatherBtn = getElement("weatherBtn")
+    describe("Query Weather Button", () => {
+        it("should display", () => {
+            const weatherBtn = getElement("weatherBtn")
+            console.log(weatherBtn)
+        })
     })
 
-    it("should display a button to fetch weather data related to the users current location", () => {
-        const currentLocationWeatherBtn = getElement("currentLocationWeatherBtn")
+    describe("Query Current Location Weather Button", () => {
+        it("should display", () => {
+            const currentLocationWeatherBtn = getElement("currentLocationWeatherBtn")
+        })
+        it("onClick: should fetch weather data about the current location", () => { 
+            cy.server()
+            cy.route("sockjs-node/*").as("getWeather")
+
+            const currentLocationWeatherBtn = getElement("currentLocationWeatherBtn")
+            currentLocationWeatherBtn.click()
+
+            cy.wait("@getWeather")
+
+            const temperature = getElement("temperature")
+            temperature.should(el => {
+                expect(el[0].textContent).to.not.equal("")
+            })
+        })
     })
 })
