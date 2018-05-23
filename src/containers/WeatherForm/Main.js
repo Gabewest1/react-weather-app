@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { ReactHeight } from "react-height"
 
 import Top from "./Top"
-import DailyForecastContainer from "../DailyForecastContainer"
+import WeeklyForecastContainer from "../WeeklyForecastContainer"
 
 const Main = styled.div`
     opacity: ${({showData}) => showData ? 1 : 0};
@@ -29,7 +29,7 @@ export default (props) => {
                 tempSymbol={ tempSymbol }
                 celciusMode={ celciusMode }
                 setCelciusMode={ setCelciusMode }/>
-            <DailyForecastContainer /> 
+            <WeeklyForecastContainer /> 
         </Main>
     )
 }

@@ -8,7 +8,7 @@ import Wrapper from "./Wrapper"
 import * as weatherDataSelectors from "../WeatherForm/selectors"
 import convertFahrenheitToCelcius from "../../lib/convertFahrenheitToCelcius"
 
-class DailyForecastContainer extends React.Component {
+class WeeklyForecastContainer extends React.Component {
     createDailyForecasts() {
         let { celciusMode, weeklyForecastData, tempSymbol } = this.props
 
@@ -59,4 +59,4 @@ function mapStateToProps(state) {
 //     return bindActionCreators(actions, dispatch)
 // }
 
-export default connect(mapStateToProps, null)(DailyForecastContainer)
+export default connect(mapStateToProps, null)(WeeklyForecastContainer)
