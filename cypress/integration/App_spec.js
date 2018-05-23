@@ -54,4 +54,26 @@ describe("Weather App", () => {
             })
         })
     })
+
+    describe("Weekly Forecast", () => {
+        let weatherBtn
+        let currentLocationWeatherBtn
+
+        beforeEach(() => {
+            weatherBtn = getElement("weatherBtn")    
+            currentLocationWeatherBtn = getElement("currentLocationWeatherBtn")    
+        })
+
+        it("should display 7 daily forecasts", () => {
+            cy.server()
+            cy.route("sockjs-node/*").as("getWeather")
+
+            currentLocationWeatherBtn.click()
+
+            cy.wait("@getWeather")
+
+            const numForecasts = getElement("weeklyForecast").children()
+            expect(numForecasts).to.equal(7)
+        })
+    })
 })
